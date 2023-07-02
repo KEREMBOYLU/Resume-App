@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import GeneralSetting
+from core.models import GeneralSetting,ImageSetting,Skill
 
 # Create your views here.
 
@@ -21,6 +21,18 @@ def index(request):
     about_myself_welcome = GeneralSetting.objects.get(name='about_myself_welcome').parameter
     about_myself_footer = GeneralSetting.objects.get(name='about_myself_footer').parameter
 
+
+    #Images
+
+
+    #Skills
+    skills = Skill.objects.all().order_by('order')
+
+
+
+
+
+
     context = {
     'site_title': site_title,
     'site_keywords': site_keywords,
@@ -38,6 +50,8 @@ def index(request):
 
     'about_myself_welcome': about_myself_welcome,
     'about_myself_footer': about_myself_footer,
+
+    'skills': skills,
 
     }
 

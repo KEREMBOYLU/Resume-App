@@ -100,7 +100,6 @@ class Skill(AbstractModel):
     )
     percentage = models.IntegerField(
         default=50,
-        blank=True,
         verbose_name='Percentage',
         validators=[MinValueValidator(0), MaxValueValidator(100)],
     )
@@ -111,3 +110,4 @@ class Skill(AbstractModel):
     class Meta:
         verbose_name = 'Skill'
         verbose_name_plural = 'Skills'
+        ordering = ('order',)
