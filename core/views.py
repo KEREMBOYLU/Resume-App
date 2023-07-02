@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.models import GeneralSetting,ImageSetting,Skill
+from core.models import GeneralSetting,ImageSetting,Skill,Experience,Education
 
 # Create your views here.
 
@@ -28,7 +28,11 @@ def index(request):
     #Skills
     skills = Skill.objects.all().order_by('order')
 
+    #Experiences
+    experiences = Experience.objects.all().order_by('-start_date')
 
+    #Educations
+    educations = Education.objects.all().order_by('-start_date')
 
 
 
@@ -52,6 +56,8 @@ def index(request):
     'about_myself_footer': about_myself_footer,
 
     'skills': skills,
+    'experiences': experiences,
+    'educations': educations,
 
     }
 
