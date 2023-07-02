@@ -17,11 +17,11 @@ class GeneralSetting(models.Model):
         verbose_name='Description',
         help_text='',
     )
-    parameters = models.CharField(
+    parameter = models.CharField(
         default='',
         max_length=254,
         blank=True,
-        verbose_name='Parameters',
+        verbose_name='Parameter',
         help_text='',
     )
     updated_date = models.DateTimeField(
