@@ -121,8 +121,9 @@ class Experience(AbstractModel):
         verbose_name='Company Name',
         help_text='',
     )
-    job_title = models.TextField(
+    job_title = models.CharField(
         default='',
+        max_length=254,
         blank=True,
         verbose_name='Job Title',
         help_text='',
