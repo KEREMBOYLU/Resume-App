@@ -1,4 +1,3 @@
-
 <!--================Footer Area =================-->
 <footer class="footer_area p_120">
     <div class="container">
@@ -28,10 +27,11 @@
                     </div>
                     <p>Let us be social</p>
                     <ul class="list">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+
+                        {% for social_media in social_medias %}
+                            <li><a href="{{ social_media.link }}" target="_blank">{{ social_media.icon|safe }}</a></li>
+                        {% endfor %}
+
                     </ul>
                 </aside>
             </div>

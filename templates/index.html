@@ -33,11 +33,14 @@
                                         class="lnr lnr-envelope"></i>{{ home_banner_email }}</a></li>
                                 <li><a href="#"><i class="lnr lnr-home"></i>{{ home_banner_location }}</a></li>
                             </ul>
+
+                            {% for social_media in social_medias %}
                             <ul class="list personal_social">
-                                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="{{ social_media.link }}" target="_blank">{{ social_media.icon|safe }}</a></li>
                             </ul>
+                            {% endfor %}
+
+
                         </div>
                     </div>
                 </div>
