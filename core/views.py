@@ -1,29 +1,43 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
 
-
 # Create your views here.
 
+def get_general_setting(parameter):
+    try:
+        obj = GeneralSetting.objects.get(name=parameter).parameter
+    except:
+        obj = ''
+
+    return obj
+
+def get_image_setting(parameter):
+    try:
+        obj = ImageSetting.objects.get(name=parameter).file
+    except:
+        obj = ''
+
+    return obj
+
+
 def layout(request):
-    site_title = GeneralSetting.objects.get(name='site_title').parameter
-    site_keywords = GeneralSetting.objects.get(name='site_keywords').parameter
-    site_description = GeneralSetting.objects.get(name='site_description').parameter
-    site_author = GeneralSetting.objects.get(name='site_author').parameter
-
-    home_banner_name = GeneralSetting.objects.get(name='home_banner_name').parameter
-    home_banner_title = GeneralSetting.objects.get(name='home_banner_title').parameter
-    home_banner_description = GeneralSetting.objects.get(name='home_banner_description').parameter
-    home_banner_birthdate = GeneralSetting.objects.get(name='home_banner_birthdate').parameter
-    home_banner_gsm = GeneralSetting.objects.get(name='home_banner_gsm').parameter
-    home_banner_telephone = GeneralSetting.objects.get(name='home_banner_telephone').parameter
-    home_banner_email = GeneralSetting.objects.get(name='home_banner_email').parameter
-    home_banner_location = GeneralSetting.objects.get(name='home_banner_location').parameter
-
-    about_myself_welcome = GeneralSetting.objects.get(name='about_myself_welcome').parameter
-    about_myself_footer = GeneralSetting.objects.get(name='about_myself_footer').parameter
+    site_title = get_general_setting('site_title')
+    site_keywords = get_general_setting('site_keywords')
+    site_description = get_general_setting('site_description')
+    site_author = get_general_setting('site_author')
+    home_banner_name = get_general_setting('home_banner_name')
+    home_banner_title = get_general_setting('home_banner_title')
+    home_banner_description = get_general_setting('home_banner_description')
+    home_banner_birthdate = get_general_setting('home_banner_birthdate')
+    home_banner_gsm = get_general_setting('home_banner_gsm')
+    home_banner_telephone = get_general_setting('home_banner_telephone')
+    home_banner_email = get_general_setting('home_banner_email')
+    home_banner_location = get_general_setting('home_banner_location')
+    about_myself_welcome = get_general_setting('about_myself_welcome')
+    about_myself_footer = get_general_setting('about_myself_footer')
 
     # Images
-    # logo = ImageSetting.objects.get(name='logo').file
+    # logo = get_image_setting('logo')
 
     # Social Media
     social_medias = SocialMedia.objects.all().order_by('order')
