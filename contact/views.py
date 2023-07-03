@@ -1,19 +1,38 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from contact.models import Message
+from contact.forms import ContactForm
+
 
 # Create your views here.
 
 def contact_form(request):
     if request.POST:
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        contact_form = ContactForm(request.POST or None)
+        if contact_form.is_valid():
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
 
-        context = {
-            'success': True,
-            'message': 'Contact form sent successfully.',
-        }
+            Message.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+            )
+
+            contact_form.send_mail()
+
+            context = {
+                'success': True,
+                'message': 'Contact form sent successfully.',
+            }
+        else:
+            context = {
+                'success': False,
+                'message': 'Contact form is not valid.',
+            }
 
     else:
         context = {
@@ -24,4 +43,8 @@ def contact_form(request):
     return  JsonResponse(context)
 
 def contact(request):
-    return render(request, 'contact.html')
+    contact_form = ContactForm()
+    context = {
+        'contact_form': contact_form,
+    }
+    return render(request, 'contact.html', context)
