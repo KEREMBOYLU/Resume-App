@@ -4,7 +4,7 @@ from core.models import GeneralSetting, ImageSetting, Skill, Experience, Educati
 
 # Create your views here.
 
-def index(request):
+def layout(request):
     site_title = GeneralSetting.objects.get(name='site_title').parameter
     site_keywords = GeneralSetting.objects.get(name='site_keywords').parameter
     site_description = GeneralSetting.objects.get(name='site_description').parameter
@@ -23,15 +23,7 @@ def index(request):
     about_myself_footer = GeneralSetting.objects.get(name='about_myself_footer').parameter
 
     # Images
-
-    # Skills
-    skills = Skill.objects.all().order_by('order')
-
-    # Experiences
-    experiences = Experience.objects.all().order_by('-start_date')
-
-    # Educations
-    educations = Education.objects.all().order_by('-start_date')
+    # logo = ImageSetting.objects.get(name='logo').file
 
     # Social Media
     social_medias = SocialMedia.objects.all().order_by('order')
@@ -57,11 +49,29 @@ def index(request):
         'about_myself_welcome': about_myself_welcome,
         'about_myself_footer': about_myself_footer,
 
+        'social_medias': social_medias,
+
+        'documents': documents,
+    }
+    return context
+
+
+def index(request):
+
+    # Skills
+    skills = Skill.objects.all().order_by('order')
+
+    # Experiences
+    experiences = Experience.objects.all().order_by('-start_date')
+
+    # Educations
+    educations = Education.objects.all().order_by('-start_date')
+
+    context = {
+
         'skills': skills,
         'experiences': experiences,
         'educations': educations,
-        'social_medias': social_medias,
-        'documents': documents,
 
     }
 
@@ -71,4 +81,3 @@ def index(request):
 def redirect_urls(request, slug):
     doc = get_object_or_404(Document, slug=slug)
     return redirect(doc.file.url)
-
