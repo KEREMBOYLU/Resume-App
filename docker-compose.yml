@@ -10,6 +10,8 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     command: -p 5432
   app:
+    container_name: app_portfolio_website
+    hostname: app_portfolio_website
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,7 +24,16 @@ services:
     ports:
       - "0.0.0.0:8000:8000"
     command: gunicorn portfolio_website.wsgi:application --bind 0.0.0.0:8000
-
+  nginx:
+    build:
+        context: ./nginx
+        dockerfile: Dockerfile
+    restart: unless-stopped
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - app
 
 
 volumes:
