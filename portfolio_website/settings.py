@@ -150,15 +150,15 @@ else:
     STATIC_ROOT = STATIC_URL
 
     MEDIA_LOCATION = 'media'
-
-
+    IMAGE_SETTINGS_LOCATION = MEDIA_LOCATION + '/image_settings'
+    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Email settings
+# Email settings
 
 DEFAULT_FROM_EMAIL = "Kerem BOYLU <kensensreservation@gmail.com>"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

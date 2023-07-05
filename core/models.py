@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from portfolio_website.custom_storage import ImageSettingsStorage, DocumentStorage, MediaStorage
 
 
 # Create your models here.
@@ -72,7 +73,7 @@ class ImageSetting(AbstractModel):
         verbose_name='Image',
         help_text='',
         blank=True,
-        upload_to='images/',
+        storage=ImageSettingsStorage(),
     )
 
     def __str__(self):
@@ -252,7 +253,7 @@ class Document(AbstractModel):
         verbose_name='File',
         help_text='',
         blank=True,
-        upload_to='documents/',
+        storage=DocumentStorage(),
     )
 
     def __str__(self):
