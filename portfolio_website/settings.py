@@ -146,6 +146,7 @@ else:
         'CacheControl': 'max-age=94608000'
     }
 
+
     STATICFILES_LOCATION = 'static'
     AWS_LOCATION = 'static'
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
