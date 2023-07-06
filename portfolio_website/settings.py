@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'contact.apps.ContactConfig',
     'storages',
+
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +56,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+
 
 ROOT_URLCONF = 'portfolio_website.urls'
 
@@ -71,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.views.layout',
+
             ],
         },
     },
@@ -146,7 +151,10 @@ else:
         'CacheControl': 'max-age=94608000'
     }
 
-    STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
+    STATICFILES_LOCATION = 'static'
+    AWS_LOCATION = 'static'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     STATIC_ROOT = STATIC_URL
 
     MEDIA_LOCATION = 'media'
