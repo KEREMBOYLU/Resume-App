@@ -16,7 +16,8 @@
             <div class="banner_content">
                 <div class="media">
                     <div class="d-flex">
-                        <img src="{% get_media_prefix %}img/personal.jpg" alt="">
+                        <img class="home_banner_photo" src=" {{ home_banner_photo.url }} " alt=""
+                             style="border-radius: 1%;">
                     </div>
                     <div class="media-body">
                         <div class="personal_text">
@@ -25,21 +26,22 @@
                             <h4>{{ home_banner_title }}</h4>
                             <p>{{ home_banner_description }}</p>
                             <ul class="list basic_info">
-                                <li><a href="javascript:;"><i
-                                        class="lnr lnr-calendar-full"></i>{{ home_banner_birthdate }}</a></li>
+                                <li><a href="#"><i class="lnr lnr-calendar-full"></i>{{ home_banner_birthdate }}</a>
+                                </li>
                                 <li><a href="tel:{{ home_banner_gsm }}"><i
                                         class="lnr lnr-phone-handset"></i>{{ home_banner_telephone }}</a></li>
                                 <li><a href="mailto:{{ home_banner_email }}"><i
                                         class="lnr lnr-envelope"></i>{{ home_banner_email }}</a></li>
                                 <li><a href="#"><i class="lnr lnr-home"></i>{{ home_banner_location }}</a></li>
                             </ul>
-
-                            {% for social_media in social_medias %}
                             <ul class="list personal_social">
-                                <li><a href="{{ social_media.link }}" target="_blank">{{ social_media.icon|safe }}</a></li>
-                            </ul>
-                            {% endfor %}
 
+                                {% for social in social_medias %}
+                                    <li><a href="{{ social.link }}" target="_blank">{{ social.icon|safe }}</a></li>
+                                {% endfor %}
+
+
+                            </ul>
 
                         </div>
                     </div>
@@ -94,16 +96,16 @@
         <div class="tabs_inner">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                       aria-controls="home" aria-selected="true">My Experiences</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                       aria-controls="home" aria-selected="false">My Experiences</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                       aria-controls="profile" aria-selected="false">My Education</a>
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="profile" aria-selected="true">My Education</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <ul class="list">
                         {% for experience in experiences %}
                             <li>
@@ -127,31 +129,30 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <ul class="list">
 
 
                         {% for education in educations %}
-                        <li>
-                            <span></span>
-                            <div class="media">
-                                <div class="d-flex">
-                                    <p>{{ education.start_date|date:"M Y"}} -
-                                        {% if education.end_date %}
-                                            {{ education.end_date|date:"M Y" }}
-                                        {% else %}
-                                         Present
-                                        {% endif %}
-                                    </p>
+                            <li>
+                                <span></span>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <p>{{ education.start_date|date:"M Y" }} -
+                                            {% if education.end_date %}
+                                                {{ education.end_date|date:"M Y" }}
+                                            {% else %}
+                                                Present
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>{{ education.school_name }}</h4>
+                                        <p>{{ education.major }}<br/>{{ education.department }}</p>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <h4>{{ education.school_name }}</h4>
-                                    <p>{{ education.major }}<br/>{{ education.department }}</p>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
                         {% endfor %}
-
 
 
                     </ul>

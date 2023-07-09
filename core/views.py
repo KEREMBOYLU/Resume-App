@@ -37,7 +37,9 @@ def layout(request):
     about_myself_footer = get_general_setting('about_myself_footer')
 
     # Images
-    # logo = get_image_setting('logo')
+    navbar_logo = get_image_setting('logo')
+    favicon = get_image_setting('favicon')
+
 
     # Social Media
     social_medias = SocialMedia.objects.all().order_by('order')
@@ -60,6 +62,9 @@ def layout(request):
         'home_banner_email': home_banner_email,
         'home_banner_location': home_banner_location,
 
+        'navbar_logo': navbar_logo,
+        'favicon': favicon,
+
         'about_myself_welcome': about_myself_welcome,
         'about_myself_footer': about_myself_footer,
 
@@ -71,6 +76,9 @@ def layout(request):
 
 
 def index(request):
+
+    #İmages
+    home_banner_photo = get_image_setting('home_banner_photo')
 
     # Skills
     skills = Skill.objects.all().order_by('order')
@@ -86,6 +94,7 @@ def index(request):
         'skills': skills,
         'experiences': experiences,
         'educations': educations,
+        'home_banner_photo': home_banner_photo,
 
     }
 

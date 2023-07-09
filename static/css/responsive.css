@@ -1,3 +1,7 @@
+@media (min-width:1199px){
+	.home_banner_photo {
+        width: 690px; }
+}
 @media (max-width:1619px){
 	/* Main Menu Area css
 	============================================================================================ */
@@ -163,26 +167,7 @@
 	}
 	/* End Main Menu Area css
 	============================================================================================ */
-	/* Blog page Area css
-	============================================================================================ */
-	.categories_post img{
-        width: 100%;
-    }
-	.categories_post {
-		max-width: 360px;
-		margin: 0 auto;
-	}
-	.blog_categorie_area .col-lg-4{
-        margin-top: 30px;
-    }
-    .blog_area{
-        padding-bottom: 80px;
-    }
-    .single-post-area .blog_right_sidebar{
-        margin-top: 30px;
-    }
-	/* End Blog page Area css
-	============================================================================================ */
+	
 	
 	/* Contact Page Area css
 	============================================================================================ */
@@ -241,18 +226,7 @@
 	.home_banner_area .banner_inner .banner_content {
 		margin-top: 0px;
 	}
-	/* Blog Page Area css
-	============================================================================================ */
-    .blog_banner .banner_inner .blog_b_text h2 {
-		font-size: 40px;
-		line-height: 50px;
-	}
-	.blog_info.text-right{
-		text-align: left !important;
-		margin-bottom: 10px;
-	}
-	/* End Blog Page Area css
-	============================================================================================ */
+
 	.home_banner_area .banner_inner .banner_content h3 {
 		font-size: 45px;
 		line-height: 55px;
@@ -333,29 +307,7 @@
 	.main_title h2 {
 		font-size: 25px;
 	}
-	/* Elements Area css
-	============================================================================================ */
-	.sample-text-area {
-		padding: 70px 0 70px 0;
-	}
-	.generic-blockquote {
-		padding: 30px 15px 30px 30px;
-	}
-	/* End Elements Area css
-	============================================================================================ */
-	
-	/* Blog Page Area css
-	============================================================================================ */
-	.blog_details h2 {
-		font-size: 20px;
-		line-height: 30px;
-	}
-	.blog_banner .banner_inner .blog_b_text h2 {
-		font-size: 28px;
-		line-height: 38px;
-	}
-	/* End Blog Page Area css
-	============================================================================================ */
+
 	/* Footer Area css
 	============================================================================================ */
 	.footer-area {
@@ -413,13 +365,7 @@
 	.banner_area .banner_inner .banner_content h2 {
 		font-size: 32px;
 	}
-	/* Blog Page Area css
-	============================================================================================ */
-	.comments-area .thumb {
-		margin-right: 10px;
-	}
-	/* End Blog Page Area css
-	============================================================================================ */
+	
 	.tabs_inner .tab-content .tab-pane .list::before {
 		display: none;
 	}
