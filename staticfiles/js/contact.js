@@ -70,8 +70,7 @@ $(document).ready(function () {
                                     $('.modal').modal('hide');
                                     $('#success').modal('show');
                                 })
-                            }
-                            else {
+                            } else {
                                 $('#contactForm').fadeTo("slow", 1, function () {
                                     $('#error').fadeIn()
                                     $('.modal').modal('hide');
@@ -81,6 +80,9 @@ $(document).ready(function () {
                             }
 
                         },
+                        error: function () {
+
+                        }
                     })
                 }
             })

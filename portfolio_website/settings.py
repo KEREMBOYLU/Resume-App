@@ -172,6 +172,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
 
-DEFAULT_FROM_EMAIL = "Kerem BOYLU <kensensreservation@gmail.com>"
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 vars().update(env.email_url())
