@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ROOT_HOSTCONF = 'portfolio_website.hosts'
 DEFAULT_HOST = ' '
 
-ALLOWED_HOSTS = ["localhost", "admin.localhost","kensens.com.tr", "admin.kensens.com.tr","127.0.0.1", "admin."]
+ALLOWED_HOSTS = ["localhost", "admin.localhost","kensens.com.tr", "admin.kensens.com.tr","127.0.0.1", "admin.","wpad.home"]
 
 ROOT_URLCONF = 'portfolio_website.urls'
 
@@ -131,39 +131,34 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 if DEBUG:
-    STATIC_URL = '/static/'
-    STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
-
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME_PROD')
 else:
-    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
-    AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+    AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME_DEV')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
-    DEFAULT_FILE_STORAGE = 'portfolio_website.storages.MediaStorage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'portfolio_website.storages.MediaStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    AWS_DEFAULT_ACL = 'public-read'
-    AWS_s3_BUCKET_PARAMETERS = {
-        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-        'CacheControl': 'max-age=94608000'
-    }
+AWS_DEFAULT_ACL = 'public-read'
+AWS_s3_BUCKET_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000'
+}
 
-    STATICFILES_LOCATION = 'static'
-    AWS_LOCATION = 'static'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    STATIC_ROOT = STATIC_URL
+STATICFILES_LOCATION = 'static'
+AWS_LOCATION = 'static'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+STATIC_ROOT = STATIC_URL
 
-    MEDIA_LOCATION = 'media'
-    IMAGE_SETTINGS_LOCATION = MEDIA_LOCATION + '/image_settings'
-    DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
+MEDIA_LOCATION = 'media'
+IMAGE_SETTINGS_LOCATION = MEDIA_LOCATION + '/image_settings'
+DOCUMENT_LOCATION = MEDIA_LOCATION + '/documents'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
