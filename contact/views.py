@@ -24,17 +24,17 @@ def contact_form(request):
             )
             contact_form.send_mail()
 
-            sucsess = True
+            success = True
             message = 'Contact form sent successfully.'
         else:
-            sucsess = False
+            success = False
             message = 'Contact form is not valid.'
     else:
-        sucsess = False
+        success = False
         message = 'Request method is not valid.'
 
     context = {
-        'sucsess': sucsess,
+        'success': success,
         'message': message,
     }
     return JsonResponse(context)

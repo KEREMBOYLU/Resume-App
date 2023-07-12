@@ -1,4 +1,39 @@
+(function ($) {
+    $.fn.loading_status = function (activate) {
+        if (activate) {
+            this.text('Sending, please wait...');
+            this.prop('disabled', true);
+            this.removeClass('submit_btn');
+            this.addClass('loadingStatusButton');
+        } else {
+            this.prop('disabled', false);
+            this.text('Send Message');
+            this.addClass('submit_btn');
+            this.removeClass('loadingStatusButton');
+        }
+    };
+})(jQuery);
 $(document).ready(function () {
+    function getCSRFToken() {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.substring(0, 10) === 'csrftoken=') {
+                    cookieValue = decodeURIComponent(cookie.substring(10));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+// Form yeniden yüklendiğinde CSRF token'ını güncelle
+    function updateCSRFToken() {
+        var csrfToken = getCSRFToken();
+        $('#contactForm input[name="csrfmiddlewaretoken"]').val(csrfToken);
+    }
 
     (function ($) {
         "use strict";
@@ -55,13 +90,17 @@ $(document).ready(function () {
                     }
                 },
                 submitHandler: function (form) {
+                    $('#error_message').text(' Something went wrong ');
+                    $('#success_message').text('Your message is successfully sent...');
+                    $('#submit_btn').loading_status(true);
                     $(form).ajaxSubmit({
                         type: "POST",
                         data: $(form).serialize(),
                         url: "/contact/contact_form",
                         success: function (response) {
                             console.log(response)
-                            if (response.success) {
+                            if (response.success == true) {
+                                $('#success_message').text(response.message);
                                 $('#contactForm :input').attr('disabled', 'disabled');
                                 $('#contactForm').fadeTo("slow", 1, function () {
                                     $(this).find(':input').attr('disabled', 'disabled');
@@ -69,26 +108,32 @@ $(document).ready(function () {
                                     $('#success').fadeIn()
                                     $('.modal').modal('hide');
                                     $('#success').modal('show');
+                                    $('#submit_btn').loading_status(false);
                                 })
 
                             } else {
+                                $('#error_message').text(response.message);
                                 $('#contactForm').fadeTo("slow", 1, function () {
-                                    $('#error').fadeIn()
+                                    $('#error').fadeIn();
                                     $('.modal').modal('hide');
                                     $('#error').modal('show');
+                                    $('#submit_btn').loading_status(false);
                                 })
-
                             }
-
                         },
-                        error: function () {
+                        error: function (response) {
+                            if (response.message != null) {
+                                $('#error_message').text(response.message);
+                            }
                             $('#contactForm').fadeTo("slow", 1, function () {
-                                $('#error').fadeIn()
+                                $('#error').fadeIn();
                                 $('.modal').modal('hide');
                                 $('#error').modal('show');
+                                $('#submit_btn').loading_status(false);
                             })
                         }
                     })
+                    updateCSRFToken();
                 }
             })
         })
