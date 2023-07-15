@@ -3,6 +3,13 @@ from core.models import GeneralSetting, ImageSetting, Skill, Experience, Educati
 
 # Create your views here.
 
+def get_general_setting_text(parameter):
+    try:
+        obj = GeneralSetting.objects.get(name=parameter).text_parameter
+    except:
+        obj = ''
+
+    return obj
 def get_general_setting(parameter):
     try:
         obj = GeneralSetting.objects.get(name=parameter).parameter
@@ -33,7 +40,7 @@ def layout(request):
     home_banner_telephone = get_general_setting('home_banner_telephone')
     home_banner_email = get_general_setting('home_banner_email')
     home_banner_location = get_general_setting('home_banner_location')
-    about_myself_welcome = get_general_setting('about_myself_welcome')
+    about_myself_welcome = get_general_setting_text('about_myself_welcome')
     about_myself_footer = get_general_setting('about_myself_footer')
 
     # Images
