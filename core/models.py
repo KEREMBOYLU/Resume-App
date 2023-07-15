@@ -174,6 +174,13 @@ class Education(AbstractModel):
         verbose_name='Department',
         help_text='',
     )
+    school_location = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='School Location',
+        help_text='',
+    )
     start_date = models.DateField(
         verbose_name='Start Date',
     )
