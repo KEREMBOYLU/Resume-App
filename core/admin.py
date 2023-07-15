@@ -6,9 +6,9 @@ from core.models import *
 
 @admin.register(GeneralSetting)
 class GeneralSettingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'description', 'parameter','text_parameter', 'updated_date', 'created_date']
+    list_display = ['id', 'name', 'description', 'parameter', 'updated_date', 'created_date']
     search_fields = ['name', 'description', 'parameter','text_parameter',]
-    list_editable = ['description', 'parameter','text_parameter',]
+    list_editable = ['description', 'parameter',]
 
     class Meta:
         model = GeneralSetting
