@@ -43,6 +43,12 @@ class GeneralSetting(AbstractModel):
         verbose_name='Parameter',
         help_text='',
     )
+    text_parameter = models.TextField(
+        default='',
+        blank=True,
+        verbose_name='Text Parameter',
+        help_text='',
+    )
 
     def __str__(self):
         return f"General Setting: {self.name}"
