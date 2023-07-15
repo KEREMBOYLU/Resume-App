@@ -61,9 +61,6 @@ MIDDLEWARE = [
 
 ROOT_HOSTCONF = 'portfolio_website.hosts'
 DEFAULT_HOST = ' '
-
-ALLOWED_HOSTS = ["localhost", "admin.localhost","kensens.com.tr", "admin.kensens.com.tr","127.0.0.1", "admin.","wpad.home"]
-
 ROOT_URLCONF = 'portfolio_website.urls'
 
 TEMPLATES = [
@@ -131,8 +128,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-
-
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 if DEBUG:
@@ -141,7 +136,7 @@ else:
     AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME_PROD')
 AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
 
-DEFAULT_FILE_STORAGE = 'portfolio_website.storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_DEFAULT_ACL = 'public-read'
