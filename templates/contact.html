@@ -34,21 +34,15 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="contact_info">
+
+                    {% for item in contact_area_infos %}
                     <div class="info_item">
-                        <i class="lnr lnr-home"></i>
-                        <h6>{{ contact_area_address }}</h6>
-                        <p>{{ contact_area_address_under_info }}</p>
+                        {{ item.icon|safe }}
+                        <h6><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></h6>
+                        <p>{{ item.description }}</p>
                     </div>
-                    <div class="info_item">
-                        <i class="lnr lnr-phone-handset"></i>
-                        <h6><a href="#">{{ contact_area_phone }}</a></h6>
-                        <p>{{ contact_area_phone_under_info }}</p>
-                    </div>
-                    <div class="info_item">
-                        <i class="lnr lnr-envelope"></i>
-                        <h6><a href="#">{{ contact_area_email }}</a></h6>
-                        <p>{{ contact_area_email_under_info }}</p>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="col-lg-9">
