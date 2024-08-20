@@ -108,6 +108,10 @@ class Skill(AbstractModel):
         verbose_name='Percentage',
         validators=[MinValueValidator(0), MaxValueValidator(100)],
     )
+    show_percentage = models.BooleanField(
+        default=True,
+        verbose_name='Show Percentage',
+    )
 
     def __str__(self):
         return f"Skill: {self.name}"
