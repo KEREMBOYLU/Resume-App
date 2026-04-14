@@ -67,6 +67,57 @@ docker compose run app python manage.py collectstatic
 
 ---
 
+## 🧩 Admin Content Keys Guide
+
+Bu bölüm, Django Admin panelinde hangi kayıtların hangi alanlara girileceğini özetler.
+
+### General Settings (Core > General Settings)
+
+`name` alanı key olarak kullanılır. Değerler aşağıdaki şekilde girilmelidir:
+
+| name (key) | Doldurulacak alan | Tip | Kullanım |
+|---|---|---|---|
+| `site_title` | `parameter` | kısa metin | `<title>` |
+| `site_keywords` | `parameter` | kısa metin | meta keywords |
+| `site_description` | `parameter` | kısa metin | meta description |
+| `site_author` | `parameter` | kısa metin | meta author |
+| `home_banner_name` | `parameter` | kısa metin | ana banner isim |
+| `home_banner_title` | `parameter` | kısa metin | ana banner ünvan |
+| `home_banner_description` | `parameter` | kısa metin | ana banner açıklama |
+| `home_banner_birthdate` | `parameter` | kısa metin | doğum tarihi satırı |
+| `home_banner_gsm` | `parameter` | kısa metin | `tel:` linki |
+| `home_banner_telephone` | `parameter` | kısa metin | telefonda görünen metin |
+| `home_banner_email` | `parameter` | kısa metin | `mailto:` + görünen metin |
+| `home_banner_location` | `parameter` | kısa metin | lokasyon satırı |
+| `about_myself_welcome` | `text_parameter` | uzun metin / HTML | About Myself paragrafı |
+| `about_myself_footer` | `parameter` | kısa/orta metin | footer About Me |
+
+Not: `description` alanı yönetim amaçlıdır, frontend'de kullanılmaz.
+
+### Image Settings (Core > Image Settings)
+
+`name` alanı key olarak kullanılır:
+
+| name (key) | Doldurulacak alan | Tip | Kullanım |
+|---|---|---|---|
+| `logo` | `file` | görsel | navbar logo |
+| `favicon` | `file` | görsel | tarayıcı favicon |
+| `home_banner_photo` | `file` | görsel | anasayfa profil fotoğrafı |
+
+### Diğer Modeller
+
+| Model | Temel alanlar | Not |
+|---|---|---|
+| Skills | `order`, `name`, `percentage`, `show_percentage` | Yetenek çubukları |
+| Experiences | `company_name`, `job_title`, `job_location`, `start_date`, `end_date` | `end_date` boşsa "Present" |
+| Educations | `school_name`, `major`, `department`, `school_location`, `start_date`, `end_date` | Eğitim sekmesi |
+| Social Medias | `order`, `name`, `link`, `icon` | `icon` HTML olarak gösterilir |
+| Documents | `order`, `slug`, `button_text`, `file` | Navbar'da buton/link oluşturur |
+| Contact Area Infos | `order`, `title`, `description`, `icon`, `link` | Contact sayfası bilgi kutuları |
+| Messages | `name`, `email`, `subject`, `message` | Contact form gönderimleri ile otomatik oluşur |
+
+---
+
 ## 🐳 Installing Docker & Docker Compose
 
 Make sure Docker and Docker Compose are installed on your system before running the project.
