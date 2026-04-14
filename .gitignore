@@ -163,3 +163,8 @@ cython_debug/
 media
 
 docker.txt
+
+# Local/secret SSL files
+nginx/ssl/
+*.pem
+*.key
