@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(blank=True, default='', max_length=254, verbose_name='Title')),
                 ('description', models.CharField(blank=True, default='', max_length=254, verbose_name='Description')),
                 ('icon', models.CharField(blank=True, default='', max_length=254, verbose_name='Icon')),
-                ('link', models.CharField(blank=True, default='', verbose_name='Link')),
+                ('link', models.CharField(blank=True, default='', max_length=254, verbose_name='Link')),
             ],
             options={
                 'verbose_name': 'Contact Area Info',

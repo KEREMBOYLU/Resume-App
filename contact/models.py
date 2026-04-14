@@ -71,6 +71,7 @@ class ContactAreaInfo(AbstractModel):
     )
     link = models.CharField(
         default='',
+        max_length=254,
         blank=True,
         verbose_name='Link',
         help_text='',
