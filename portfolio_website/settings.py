@@ -126,7 +126,6 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'django_ready' / 'static',
 ]
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
