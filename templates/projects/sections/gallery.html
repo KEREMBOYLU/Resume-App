@@ -1,0 +1,16 @@
+<section class="reveal-up space-y-5">
+  <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">{% if section.title %}{{ section.title }}{% else %}Gallery{% endif %}</h2>
+
+  {% if gallery_images %}
+    <div class="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth scrollbar-hide -mx-6 px-6">
+      {% for item in gallery_images %}
+        <figure class="snap-start shrink-0 w-[min(80vw,520px)] rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl bg-white dark:bg-[#1A1A1A] flex flex-col">
+          <img src="{{ item.image.url }}" alt="{{ item.alt_text|default:project.title }}" class="w-full h-72 object-cover">
+          <figcaption class="w-full flex-1 px-4 py-4 text-xs text-apple-gray dark:text-white/50 bg-white dark:bg-[#1A1A1A]">
+            {% if item.caption %}{{ item.caption }}{% else %}{{ item.alt_text|default:project.title }}{% endif %}
+          </figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>

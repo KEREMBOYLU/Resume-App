@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'contact.apps.ContactConfig',
+    'projects.apps.ProjectsConfig',
     'storages',
     'django_hosts',
 ]
@@ -66,8 +67,7 @@ ROOT_URLCONF = 'portfolio_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / 'django_ready' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +125,8 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'static',
+    BASE_DIR / 'django_ready' / 'static',
 ]
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')

@@ -1,0 +1,46 @@
+<section class="reveal-up">
+  <div class="flex flex-wrap items-center gap-2 mb-6">
+    {% if project.category %}
+      <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold tracking-wider uppercase">{{ project.category.name }}</span>
+    {% endif %}
+    {% for tech in project.tech_stack_items|slice:":1" %}
+      <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold tracking-wider uppercase">{{ tech }}</span>
+    {% endfor %}
+    {% if project.status %}
+      <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-600 dark:text-green-400 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>{{ project.get_status_display }}
+      </span>
+    {% endif %}
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start">
+    <div class="md:col-span-7 space-y-6">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight">{{ project.title }}</h1>
+      {% if project.summary %}
+        <p class="text-[17px] text-apple-dark/75 dark:text-white/70 leading-relaxed max-w-xl">
+          {{ project.summary }}
+        </p>
+      {% endif %}
+
+      {% if project.hero_links.all %}
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          {% for link in project.hero_links.all %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full {% if link.is_primary %}bg-apple-dark dark:bg-apple-blue text-white shadow-sm hover:opacity-90 transition-opacity{% else %}bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors{% endif %} text-sm font-semibold">
+              {% if link.icon %}
+                {{ link.icon|safe }}
+              {% endif %}
+              {{ link.label }}
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if project.cover_image %}
+      <div class="md:col-span-5 rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl aspect-[3/2]">
+        <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="w-full h-full object-cover" />
+      </div>
+    {% endif %}
+  </div>
+</section>

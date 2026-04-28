@@ -1,0 +1,25 @@
+{% load settings_extras %}
+
+<article class="space-y-4">
+  {% if section.title %}
+    <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">{{ section.title }}</h2>
+  {% endif %}
+
+  {% if section.feature_items %}
+    <ul class="space-y-3">
+      {% for feature in section.feature_items %}
+        {% with title=feature|feature_title description=feature|feature_description %}
+          <li class="flex items-start gap-3 text-[15px] text-apple-dark/70 dark:text-white/65">
+            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-apple-dark dark:bg-white shrink-0"></span>
+            <span>
+              {% if title %}{{ title }}{% endif %}
+              {% if description %}
+                <span class="block mt-1 text-apple-gray dark:text-white/50">{{ description }}</span>
+              {% endif %}
+            </span>
+          </li>
+        {% endwith %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</article>

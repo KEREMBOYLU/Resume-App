@@ -19,10 +19,10 @@ from django.urls import path,include
 from django.conf.global_settings import DEBUG
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import index
 
 urlpatterns = [
-   # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('projects/', include('projects.urls')),
     path('', include('core.urls')),
     path('contact/', include('contact.urls')),
 ]

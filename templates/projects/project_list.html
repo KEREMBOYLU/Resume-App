@@ -1,0 +1,41 @@
+{% load static settings_extras %}
+
+<!doctype html>
+<html lang="en">
+{% include 'includes/head.html' %}
+<body class="relative min-h-screen bg-apple-bg dark:bg-[#121212] transition-colors duration-500 overflow-x-hidden pt-24 font-sans flex flex-col text-apple-dark dark:text-white/90">
+{% include 'includes/navbar.html' with active_nav='projects' %}
+
+<main class="w-full flex-1 max-w-6xl mx-auto px-6 py-20">
+    <div
+        class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
+        <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'projects_page_title' }}</span>
+    </div>
+
+    <header class="mb-16 reveal-up">
+        <h1 class="text-5xl lg:text-6xl font-bold text-apple-dark dark:text-white tracking-tight mb-4 transition-colors">
+            {{ gs|get_item:'projects_heading' }}
+        </h1>
+        <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">
+            {{ gs|get_item:'projects_subtitle' }}
+        </p>
+    </header>
+
+    {% if projects %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 preserve-3d perspective-1000 reveal-up">
+            {% for project in projects %}
+                {% include 'projects/partials/project_card.html' with project=project %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="rounded-2xl border border-black/10 dark:border-white/10 p-8 bg-white/50 dark:bg-white/5">
+            <p class="text-apple-gray dark:text-white/60">No projects are published yet.</p>
+        </div>
+    {% endif %}
+</main>
+
+{% include 'includes/footer.html' %}
+</body>
+</html>

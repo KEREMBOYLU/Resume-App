@@ -1,0 +1,12 @@
+<article class="space-y-3">
+  {% if section.title %}
+    <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">{{ section.title }}</h2>
+  {% endif %}
+
+  {% if section.content %}
+    {# Admin-authored HTML is marked safe because admin users are trusted. Do not pass user-submitted content here. #}
+    <div class="project-rich-text">
+      {{ section.content|safe }}
+    </div>
+  {% endif %}
+</article>
