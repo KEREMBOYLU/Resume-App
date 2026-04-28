@@ -1,42 +1,26 @@
 <!--================Footer Area =================-->
-<footer class="footer_area p_120">
-    <div class="container">
-        <div class="row footer_inner">
-            <div class="col-lg-5 col-sm-6">
-                <aside class="f_widget ab_widget">
-                    <div class="f_title">
-                        <h3>About Me</h3>
-                    </div>
-                    <p>{{ about_myself_footer }}</p>
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                        All rights reserved | This template is made with by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                </aside>
-            </div>
-            <div class="div col-lg-2">
-
-            </div>
-
-            <div class="col-lg-4">
-                <aside class="f_widget social_widget">
-                    <div class="f_title">
-                        <h3>Follow Me</h3>
-                    </div>
-                    <p>Let us be social</p>
-                    <ul class="list">
-
-                        {% for social_media in social_medias %}
-                            <li><a href="{{ social_media.link }}" target="_blank">{{ social_media.icon|safe }}</a></li>
-                        {% endfor %}
-
-                    </ul>
-                </aside>
-            </div>
-        </div>
+<footer class="mt-auto py-12 border-t border-black/5 dark:border-white/5 reveal-up transition-colors duration-500">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid items-center gap-4" style="grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);">
+        <p class="min-w-0 text-left text-sm font-bold tracking-tight text-apple-dark dark:text-white transition-colors">
+          {{ site_footer_brand }}
+        </p>
+        <p class="whitespace-nowrap text-center text-apple-gray dark:text-white/50 text-xs font-semibold uppercase tracking-wider transition-colors">
+          {{ site_footer_copyright }}
+        </p>
+      {% if social_medias %}
+      <nav class="min-w-0 flex flex-nowrap items-center justify-end gap-4 whitespace-nowrap" aria-label="Social media links">
+        {% for social in social_medias %}
+        <a href="{{ social.link }}" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2 text-sm font-semibold text-apple-gray dark:text-white/60 hover:text-apple-dark dark:hover:text-white transition-colors">
+          <span class="leading-none">{{ social.icon|safe }}</span>
+          <span>{{ social.name }}</span>
+        </a>
+        {% endfor %}
+      </nav>
+      {% endif %}
+      </div>
     </div>
 </footer>
 <!--================End Footer Area =================-->
-
 {% include 'includes/scripts.html' %}

@@ -1,29 +1,65 @@
 {% load static %}
 
 <!--================Header Menu Area =================-->
-<header class="header_area">
-    <div class="main_menu">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container box_1620">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="{% url 'index' %}"><img src="{{ navbar_logo.url }}" alt="" style="width: 80%"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                        {% for document in documents %}
-                            <li class="nav-item"><a class="nav-link" href="{{ document.file.url }}" target="_blank">{{ document.button_text }}</a></li>
-                        {% endfor %}
-                    </ul>
+<nav id="primary-nav"
+     class="fixed top-0 w-full z-50 bg-apple-bg/80 dark:bg-[#121212]/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="{% url 'index' %}" class="text-xl font-bold tracking-tight text-apple-dark dark:text-white transition-colors z-10"><span
+                data-brand-typing>{{ site_brand_short|default:"KB." }}</span></a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 space-x-12 items-center text-sm font-medium z-10 w-max">
+            <a href="{% url 'index' %}#home" class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'home' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Home</a>
+            <a href="{% url 'projects' %}"
+               class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'projects' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Projects</a>
+            <a href="{% url 'contact' %}"
+               class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'contact' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3 z-10">
+            <div class="relative" data-cv-dropdown>
+                <button type="button" data-cv-dropdown-toggle aria-expanded="false" aria-label="Open CV options"
+                        class="inline-flex h-10 min-w-10 shrink-0 px-4 items-center justify-center rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-xs font-bold tracking-wide hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ site_nav_cv_label|default:"CV" }}</button>
+                <div data-cv-dropdown-menu
+                     class="hidden absolute right-0 mt-2 w-44 rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1A1A1A] shadow-apple dark:shadow-2xl p-2">
+                    {% for document in documents %}
+                        <a href="{{ document.file.url }}" data-cv-popup
+                           class="block rounded-xl px-3 py-2 text-sm font-semibold text-apple-dark dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">{{ document.button_text }}</a>
+                    {% endfor %}
+
                 </div>
             </div>
-        </nav>
+            <!-- Theme Toggle Switch -->
+            <button id="theme-toggle"
+                    class="relative w-10 h-10 shrink-0 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors overflow-hidden">
+                <i class="fa-solid fa-moon absolute transition-all duration-300 transform translate-y-0 opacity-100 dark:translate-y-full dark:opacity-0 text-lg"></i>
+                <i class="fa-solid fa-sun absolute transition-all duration-300 transform -translate-y-full opacity-0 dark:translate-y-0 dark:opacity-100 text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center gap-4">
+            <div class="relative" data-cv-dropdown>
+                <button type="button" data-cv-dropdown-toggle aria-expanded="false" aria-label="Open CV options"
+                        class="inline-flex h-10 min-w-10 shrink-0 px-4 items-center justify-center rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-xs font-bold tracking-wide transition-colors">{{ site_nav_cv_label|default:"CV" }}</button>
+                <div data-cv-dropdown-menu
+                     class="hidden absolute right-0 mt-2 w-44 rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#1A1A1A] shadow-apple dark:shadow-2xl p-2">
+                    {% for document in documents %}
+                        <a href="{{ document.file.url }}" data-cv-popup
+                           class="block rounded-xl px-3 py-2 text-sm font-semibold text-apple-dark dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">{{ document.button_text }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <button id="theme-toggle-mobile"
+                    class="relative w-10 h-10 shrink-0 flex items-center justify-center rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white transition-colors overflow-hidden">
+                <i class="fa-solid fa-moon absolute transition-all duration-300 transform translate-y-0 opacity-100 dark:translate-y-full dark:opacity-0 text-lg"></i>
+                <i class="fa-solid fa-sun absolute transition-all duration-300 transform -translate-y-full opacity-0 dark:translate-y-0 dark:opacity-100 text-lg"></i>
+            </button>
+            <button class="text-apple-dark dark:text-white text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
     </div>
-</header>
+</nav>
+
 <!--================Header Menu Area =================-->

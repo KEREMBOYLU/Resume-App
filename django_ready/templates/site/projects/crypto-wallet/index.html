@@ -1,0 +1,137 @@
+{% load static settings_extras %}
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="{% static 'site/favicon.svg' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ gs|get_item:'project_crypto_wallet_page_title' }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script type="module" crossorigin src="{% static 'site/assets/main-CFswB-Bi.js' %}"></script>
+  <link rel="stylesheet" crossorigin href="{% static 'site/assets/main-Bymxzy8K.css' %}">
+</head>
+<body class="relative min-h-screen bg-apple-bg dark:bg-[#121212] transition-colors duration-500 overflow-x-hidden pt-24 font-sans flex flex-col text-apple-dark dark:text-white/90">
+  {% include 'includes/navbar.html' with active_nav='projects' %}
+
+  <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-16 md:py-20 space-y-12">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
+      <div>
+        <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+        <span class="mx-2">/</span>
+        <a href="{% url 'projects' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">Projects</a>
+        <span class="mx-2">/</span>
+        <span class="text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'project_crypto_wallet_breadcrumb_label' }}</span>
+      </div>
+      <a href="{% url 'projects' %}" class="text-apple-dark dark:text-white hover:text-apple-blue dark:hover:text-apple-blue transition-colors">{{ gs|get_item:'project_back_to_projects' }}</a>
+    </div>
+
+    <section class="reveal-up rounded-3xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#1A1A1A] shadow-apple dark:shadow-2xl p-8 md:p-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-start">
+        <div class="md:col-span-8 space-y-6">
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold tracking-wider uppercase">{{ gs|get_item:'project_crypto_wallet_badge_1' }}</span>
+            <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-[10px] font-bold tracking-wider uppercase">{{ gs|get_item:'project_crypto_wallet_badge_2' }}</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight">{{ gs|get_item:'project_crypto_wallet_hero_title' }}</h1>
+          <p class="text-lg text-apple-dark/75 dark:text-white/75 leading-relaxed max-w-3xl">{{ gs|get_item:'project_crypto_wallet_hero_desc' }}</p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="{{ gs|get_item:'project_crypto_wallet_live_demo_url' }}" class="px-5 py-2.5 rounded-full bg-apple-dark dark:bg-apple-blue text-white text-sm font-semibold transition-colors">{{ gs|get_item:'project_live_demo_label' }}</a>
+            <a href="{{ gs|get_item:'project_crypto_wallet_github_url' }}" class="px-5 py-2.5 rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-sm font-semibold hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'project_github_label' }}</a>
+            <a href="{% url 'projects' %}" class="text-sm font-semibold text-apple-dark/70 dark:text-white/70 hover:text-apple-blue dark:hover:text-apple-blue transition-colors">{{ gs|get_item:'project_back_to_projects' }}</a>
+          </div>
+        </div>
+        <aside class="md:col-span-4 border-t md:border-t-0 md:border-l border-black/10 dark:border-white/10 pt-6 md:pt-0 md:pl-8 space-y-5">
+          <div>
+            <p class="text-[11px] uppercase tracking-wider text-apple-gray dark:text-white/50">{{ gs|get_item:'project_crypto_wallet_meta_role_label' }}</p>
+            <p class="mt-1 font-semibold">{{ gs|get_item:'project_crypto_wallet_meta_role_value' }}</p>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-wider text-apple-gray dark:text-white/50">{{ gs|get_item:'project_crypto_wallet_meta_duration_label' }}</p>
+            <p class="mt-1 font-semibold">{{ gs|get_item:'project_crypto_wallet_meta_duration_value' }}</p>
+          </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-wider text-apple-gray dark:text-white/50">{{ gs|get_item:'project_crypto_wallet_meta_outcome_label' }}</p>
+            <p class="mt-1 font-semibold">{{ gs|get_item:'project_crypto_wallet_meta_outcome_value' }}</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="reveal-up space-y-10">
+      <figure class="rounded-3xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl transition-opacity">
+        <img src="{{ gs|get_item:'project_crypto_wallet_cover_image_url' }}" alt="{{ gs|get_item:'project_crypto_wallet_cover_image_alt' }}" class="w-full h-[260px] md:h-[420px] object-cover">
+      </figure>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-4">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_overview_heading' }}</h2>
+        <p class="text-apple-dark/75 dark:text-white/75 leading-relaxed max-w-3xl">{{ gs|get_item:'project_crypto_wallet_overview_text' }}</p>
+      </article>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-4">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_crypto_wallet_challenge_heading' }}</h2>
+        <p class="text-apple-dark/75 dark:text-white/75 leading-relaxed max-w-3xl">{{ gs|get_item:'project_crypto_wallet_challenge_text' }}</p>
+        <figure class="rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl mt-6">
+          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=1200" alt="Wallet transaction flow" class="w-full h-[220px] md:h-[320px] object-cover hover:scale-[1.01] transition-transform duration-500">
+          <figcaption class="px-4 py-3 text-xs text-apple-gray dark:text-white/50">Transaction checkpoints were rewritten for clearer risk communication.</figcaption>
+        </figure>
+      </article>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-4">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_crypto_wallet_solution_heading' }}</h2>
+        <p class="text-apple-dark/75 dark:text-white/75 leading-relaxed max-w-3xl">{{ gs|get_item:'project_crypto_wallet_solution_text' }}</p>
+        <ul class="list-disc pl-5 space-y-2 text-apple-dark/75 dark:text-white/75 max-w-3xl">
+          <li>{{ gs|get_item:'project_crypto_wallet_solution_point_1' }}</li>
+          <li>{{ gs|get_item:'project_crypto_wallet_solution_point_2' }}</li>
+          <li>{{ gs|get_item:'project_crypto_wallet_solution_point_3' }}</li>
+        </ul>
+      </article>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-4">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_features_heading' }}</h2>
+        <ul class="list-disc pl-5 space-y-2 text-apple-dark/75 dark:text-white/75 max-w-3xl">
+          <li>{{ gs|get_item:'project_crypto_wallet_feature_1' }}</li>
+          <li>{{ gs|get_item:'project_crypto_wallet_feature_2' }}</li>
+          <li>{{ gs|get_item:'project_crypto_wallet_feature_3' }}</li>
+        </ul>
+      </article>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-4">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_tech_stack_heading' }}</h2>
+        <p class="text-apple-dark/75 dark:text-white/75 leading-relaxed max-w-3xl">{{ gs|get_item:'project_crypto_wallet_tech_desc' }}</p>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-xs font-semibold text-apple-dark/80 dark:text-white/80">{{ gs|get_item:'project_crypto_wallet_stack_1' }}</span>
+          <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-xs font-semibold text-apple-dark/80 dark:text-white/80">{{ gs|get_item:'project_crypto_wallet_stack_2' }}</span>
+          <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-xs font-semibold text-apple-dark/80 dark:text-white/80">{{ gs|get_item:'project_crypto_wallet_stack_3' }}</span>
+          <span class="px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 text-xs font-semibold text-apple-dark/80 dark:text-white/80">{{ gs|get_item:'project_crypto_wallet_stack_4' }}</span>
+        </div>
+      </article>
+
+      <article class="border-t border-black/10 dark:border-white/10 pt-10 space-y-5">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight">{{ gs|get_item:'project_gallery_heading' }}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <figure class="rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl">
+            <img src="{{ gs|get_item:'project_crypto_wallet_gallery_1_image_url' }}" alt="{{ gs|get_item:'project_crypto_wallet_gallery_1_image_alt' }}" class="w-full h-56 object-cover hover:scale-[1.01] transition-transform duration-500">
+            <figcaption class="px-4 py-3 text-xs text-apple-gray dark:text-white/50">{{ gs|get_item:'project_crypto_wallet_gallery_1_caption' }}</figcaption>
+          </figure>
+          <figure class="rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-apple dark:shadow-2xl">
+            <img src="{{ gs|get_item:'project_crypto_wallet_gallery_2_image_url' }}" alt="{{ gs|get_item:'project_crypto_wallet_gallery_2_image_alt' }}" class="w-full h-56 object-cover hover:scale-[1.01] transition-transform duration-500">
+            <figcaption class="px-4 py-3 text-xs text-apple-gray dark:text-white/50">{{ gs|get_item:'project_crypto_wallet_gallery_2_caption' }}</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <div class="reveal-up border-t border-black/10 dark:border-white/10 pt-8 flex items-center justify-between gap-4">
+      <a href="{% url 'projects' %}" class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-sm font-semibold text-apple-dark dark:text-white hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'project_back_to_projects' }}</a>
+      <span class="text-sm font-semibold text-apple-dark/60 dark:text-white/60">{{ gs|get_item:'project_end_label' }}</span>
+    </div>
+  </main>
+
+  <footer class="mt-auto py-12 border-t border-black/5 dark:border-white/5 reveal-up transition-colors duration-500">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-apple-gray dark:text-white/50 text-xs font-semibold uppercase tracking-wider transition-colors">{{ gs|get_item:'site_footer_copyright' }}</p>
+    </div>
+  </footer>
+
+</body>
+</html>

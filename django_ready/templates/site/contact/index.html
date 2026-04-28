@@ -1,0 +1,124 @@
+{% load static settings_extras %}
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="{% static 'site/favicon.svg' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ gs|get_item:'contact_page_title' }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script type="module" crossorigin src="{% static 'site/assets/main-CFswB-Bi.js' %}"></script>
+  <link rel="stylesheet" crossorigin href="{% static 'site/assets/main-Bymxzy8K.css' %}">
+</head>
+
+<body
+  class="relative min-h-screen bg-apple-bg dark:bg-[#121212] transition-colors duration-500 overflow-x-hidden pt-24 font-sans flex flex-col text-apple-dark dark:text-white/90">
+
+  {% include 'includes/navbar.html' with active_nav='contact' %}
+
+  <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-20">
+
+    <div
+      class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
+      <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-apple-dark dark:text-white transition-colors">Contact</span>
+    </div>
+
+    <div class="mb-16 reveal-up">
+      <h1 class="text-5xl lg:text-6xl font-bold text-apple-dark dark:text-white tracking-tight mb-4 transition-colors">
+        {{ gs|get_item:'contact_heading' }}</h1>
+      <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">{{ gs|get_item:'contact_subtitle' }}
+      </p>
+    </div>
+    {% if contact_status == 'success' %}
+    <div class="mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-950/5 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200">
+      <i class="fa-solid fa-circle-check text-base"></i>
+      <span>{{ gs|get_item:'contact_success_message' }}</span>
+    </div>
+    {% elif contact_status == 'error' %}
+    <div class="mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-700 shadow-sm shadow-rose-950/5 dark:border-rose-400/20 dark:bg-rose-400/10 dark:text-rose-200">
+      <i class="fa-solid fa-circle-exclamation text-base"></i>
+      <span>{{ gs|get_item:'contact_error_message' }}</span>
+    </div>
+    {% endif %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-8 reveal-up">
+
+      <!-- Left: Contact Details -->
+      <div class="space-y-10 lg:col-span-1 lg:pr-8">
+
+        <!-- Item 1 -->
+        <div class="flex items-start gap-5">
+          <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-solid fa-house"></i></div>
+          <div>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_address_title' }}</h4>
+            <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_address_desc' }}</p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="flex items-start gap-5">
+          <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_phone_title' }}</h4>
+            <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_phone_desc' }}</p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="flex items-start gap-5">
+          <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-regular fa-envelope"></i></div>
+          <div>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_email_title' }}</h4>
+            <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_email_desc' }}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: Form Area -->
+      <div class="lg:col-span-2">
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" method="post" action="{% url 'contact_form' %}">
+          {% csrf_token %}
+
+          <!-- Left inputs -->
+          <div class="space-y-6">
+            <input type="text" name="name" placeholder="{{ gs|get_item:'contact_form_name_placeholder' }}"
+              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+              required>
+            <input type="email" name="email" placeholder="{{ gs|get_item:'contact_form_email_placeholder' }}"
+              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+              required>
+            <input type="text" name="subject" placeholder="{{ gs|get_item:'contact_form_subject_placeholder' }}"
+              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+              required>
+          </div>
+
+          <!-- Right Textarea -->
+          <div class="flex flex-col">
+            <textarea name="message" placeholder="{{ gs|get_item:'contact_form_message_placeholder' }}"
+              class="w-full h-full min-h-[180px] md:min-h-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors resize-none text-apple-dark dark:text-white rounded-xl font-medium"
+              required></textarea>
+          </div>
+
+          <!-- Submit Button (aligned right) -->
+          <div class="md:col-span-2 flex justify-end mt-2">
+            <button type="submit"
+              class="px-8 py-3.5 bg-apple-dark dark:bg-white text-white dark:text-apple-dark font-bold rounded-xl hover:opacity-80 transition-opacity duration-300">
+              {{ gs|get_item:'contact_form_submit_label' }}
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+
+</body>
+
+</html>

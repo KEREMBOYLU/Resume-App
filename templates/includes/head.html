@@ -1,26 +1,74 @@
 {% load static %}
 
-<head>
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="UTF-8" />
+      <link rel="icon" href="{{ favicon.url }}" type="image/png">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{{ page_title|default:site_title }}</title>
+      <meta name="keywords" content="{{ site_keywords }}">
+      <meta name="description" content="{{ site_description }}">
+      <meta name="author" content="{{ site_author }}">
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{{ favicon.url }}" type="image/png">
-    <title>{{ site_title }}</title>
-    <meta name="keywords" content="{{ site_keywords }}">
-    <meta name="description" content="{{ site_description }}">
-    <meta name="author" content="{{ site_author }}">
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' >
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/popup/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'vendors/flaticon/flaticon.css' %}">
-    <!-- main css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-</head>
+      <!-- FontAwesome from CDN -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      <script type="module" crossorigin src="{% static 'js/main-CFswB-Bi.js' %}"></script>
+      <link rel="stylesheet" crossorigin href="{% static 'css/main-Bymxzy8K.css' %}">
+
+      <style>
+          :root {
+              --secondary-color: #C586C0;
+          }
+
+          body ::selection,
+          body::selection {
+              color: var(--secondary-color);
+              background-color: rgba(197, 134, 192, 0.2);
+          }
+
+          .text-apple-blue,
+          .hover\:text-apple-blue:hover,
+          .dark .dark\:text-apple-blue,
+          .dark .dark\:hover\:text-apple-blue:hover {
+              color: var(--secondary-color) !important;
+          }
+
+          .bg-apple-blue,
+          .hover\:bg-apple-blue:hover,
+          .dark .dark\:bg-apple-blue,
+          .dark .dark\:hover\:bg-apple-blue:hover {
+              background-color: var(--secondary-color) !important;
+          }
+
+          .journey-tabs #tab-indicator {
+              background-color: #fff !important;
+          }
+
+          .journey-tabs .tab-btn.text-apple-dark,
+          .dark .journey-tabs .tab-btn.text-apple-dark {
+              color: #121212 !important;
+          }
+
+          .journey-tabs .tab-btn.text-apple-gray {
+              color: #86868b !important;
+          }
+
+          .dark .journey-tabs .tab-btn.text-apple-gray {
+              color: rgba(255, 255, 255, 0.5) !important;
+          }
+
+          .dark .journey-tabs .tab-btn.text-apple-gray:hover {
+              color: #fff !important;
+          }
+
+          .tab-content.opacity-100 {
+              position: relative !important;
+          }
+
+          .tab-content.opacity-0 {
+              position: absolute !important;
+          }
+      </style>
+
+      <!-- main css -->
+  </head>

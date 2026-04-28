@@ -1,0 +1,150 @@
+{% load static settings_extras %}
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="{% static 'site/favicon.svg' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ gs|get_item:'projects_page_title' }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script type="module" crossorigin src="{% static 'site/assets/main-CFswB-Bi.js' %}"></script>
+  <link rel="stylesheet" crossorigin href="{% static 'site/assets/main-Bymxzy8K.css' %}">
+</head>
+
+<body
+  class="relative min-h-screen bg-apple-bg dark:bg-[#121212] transition-colors duration-500 overflow-x-hidden pt-24 font-sans flex flex-col text-apple-dark dark:text-white/90">
+
+  {% include 'includes/navbar.html' with active_nav='projects' %}
+
+  <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-20">
+
+    <div
+      class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
+      <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-apple-dark dark:text-white transition-colors">Projects</span>
+    </div>
+
+    <div class="mb-16 reveal-up">
+      <h1 class="text-5xl lg:text-6xl font-bold text-apple-dark dark:text-white tracking-tight mb-4 transition-colors">
+        {{ gs|get_item:'projects_heading' }}</h1>
+      <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">{{ gs|get_item:'projects_subtitle' }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 preserve-3d perspective-1000 reveal-up">
+
+      <!-- Project 1 -->
+      <div
+        class="group relative rounded-3xl overflow-hidden shadow-apple dark:shadow-2xl border border-black/5 dark:border-white/5 hover:shadow-apple-hover bg-white dark:bg-[#1A1A1A] flex flex-col transition-all duration-500">
+        <div class="aspect-[16/9] bg-gray-100 dark:bg-[#222] relative overflow-hidden">
+          <img src="{{ gs|get_item:'projects_card_1_image_url' }}"
+            alt="{{ gs|get_item:'projects_card_1_image_alt' }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-6 translate-z-10 flex-1 flex flex-col">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold text-apple-dark dark:text-white transition-colors leading-tight">{{ gs|get_item:'projects_card_1_title' }}</h3>
+            <span
+              class="px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider">{{ gs|get_item:'projects_card_1_tag' }}</span>
+          </div>
+          <p class="text-[14px] text-apple-dark/70 dark:text-white/70 mb-6 transition-colors flex-1 leading-relaxed">{{ gs|get_item:'projects_card_1_desc' }}</p>
+
+          <div class="flex gap-3 mt-auto">
+            <a href="{% url 'project_detail' slug='lumina-storefront' %}"
+              class="px-4 py-2 rounded-full bg-apple-dark dark:bg-apple-blue text-white text-[13px] font-semibold hover:scale-105 transition-transform shadow-md">{{ gs|get_item:'projects_card_cta_view' }}</a>
+            <a href="{{ gs|get_item:'projects_card_1_github_url' }}"
+              class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-[13px] font-semibold hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'projects_card_cta_github' }}</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div
+        class="group relative rounded-3xl overflow-hidden shadow-apple dark:shadow-2xl border border-black/5 dark:border-white/5 hover:shadow-apple-hover bg-white dark:bg-[#1A1A1A] flex flex-col transition-all duration-500">
+        <div class="aspect-[16/9] bg-gray-100 dark:bg-[#222] relative overflow-hidden">
+          <img src="{{ gs|get_item:'projects_card_2_image_url' }}"
+            alt="{{ gs|get_item:'projects_card_2_image_alt' }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-6 translate-z-10 flex-1 flex flex-col">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold text-apple-dark dark:text-white transition-colors leading-tight">{{ gs|get_item:'projects_card_2_title' }}</h3>
+            <span
+              class="px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider">{{ gs|get_item:'projects_card_2_tag' }}</span>
+          </div>
+          <p class="text-[14px] text-apple-dark/70 dark:text-white/70 mb-6 transition-colors flex-1 leading-relaxed">{{ gs|get_item:'projects_card_2_desc' }}</p>
+
+          <div class="flex gap-3 mt-auto">
+            <a href="{% url 'project_detail' slug='apex-dashboard' %}"
+              class="px-4 py-2 rounded-full bg-apple-dark dark:bg-apple-blue text-white text-[13px] font-semibold hover:scale-105 transition-transform shadow-md">{{ gs|get_item:'projects_card_cta_view' }}</a>
+            <a href="{{ gs|get_item:'projects_card_2_github_url' }}"
+              class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-[13px] font-semibold hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'projects_card_cta_github' }}</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div
+        class="group relative rounded-3xl overflow-hidden shadow-apple dark:shadow-2xl border border-black/5 dark:border-white/5 hover:shadow-apple-hover bg-white dark:bg-[#1A1A1A] flex flex-col transition-all duration-500">
+        <div class="aspect-[16/9] bg-gray-100 dark:bg-[#222] relative overflow-hidden">
+          <img src="{{ gs|get_item:'projects_card_3_image_url' }}"
+            alt="{{ gs|get_item:'projects_card_3_image_alt' }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-6 translate-z-10 flex-1 flex flex-col">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold text-apple-dark dark:text-white transition-colors leading-tight">{{ gs|get_item:'projects_card_3_title' }}</h3>
+            <span
+              class="px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider">{{ gs|get_item:'projects_card_3_tag' }}</span>
+          </div>
+          <p class="text-[14px] text-apple-dark/70 dark:text-white/70 mb-6 transition-colors flex-1 leading-relaxed">{{ gs|get_item:'projects_card_3_desc' }}</p>
+
+          <div class="flex gap-3 mt-auto">
+            <a href="{% url 'project_detail' slug='devflow' %}"
+              class="px-4 py-2 rounded-full bg-apple-dark dark:bg-apple-blue text-white text-[13px] font-semibold hover:scale-105 transition-transform shadow-md">{{ gs|get_item:'projects_card_cta_view' }}</a>
+            <a href="{{ gs|get_item:'projects_card_3_github_url' }}"
+              class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-[13px] font-semibold hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'projects_card_cta_github' }}</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div
+        class="group relative rounded-3xl overflow-hidden shadow-apple dark:shadow-2xl border border-black/5 dark:border-white/5 hover:shadow-apple-hover bg-white dark:bg-[#1A1A1A] flex flex-col transition-all duration-500">
+        <div class="aspect-[16/9] bg-gray-100 dark:bg-[#222] relative overflow-hidden">
+          <img src="{{ gs|get_item:'projects_card_4_image_url' }}"
+            alt="{{ gs|get_item:'projects_card_4_image_alt' }}"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="p-6 translate-z-10 flex-1 flex flex-col">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-xl font-bold text-apple-dark dark:text-white transition-colors leading-tight">{{ gs|get_item:'projects_card_4_title' }}</h3>
+            <span
+              class="px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider">{{ gs|get_item:'projects_card_4_tag' }}</span>
+          </div>
+          <p class="text-[14px] text-apple-dark/70 dark:text-white/70 mb-6 transition-colors flex-1 leading-relaxed">{{ gs|get_item:'projects_card_4_desc' }}</p>
+
+          <div class="flex gap-3 mt-auto">
+            <a href="{% url 'project_detail' slug='crypto-wallet' %}"
+              class="px-4 py-2 rounded-full bg-apple-dark dark:bg-apple-blue text-white text-[13px] font-semibold hover:scale-105 transition-transform shadow-md">{{ gs|get_item:'projects_card_cta_view' }}</a>
+            <a href="{{ gs|get_item:'projects_card_4_github_url' }}"
+              class="px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-apple-dark dark:text-white text-[13px] font-semibold hover:bg-black/10 dark:hover:bg-white/20 transition-colors">{{ gs|get_item:'projects_card_cta_github' }}</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto py-12 border-t border-black/5 dark:border-white/5 reveal-up transition-colors duration-500">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-apple-gray dark:text-white/50 text-xs font-semibold uppercase tracking-wider transition-colors">
+        {{ gs|get_item:'site_footer_copyright' }}</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
