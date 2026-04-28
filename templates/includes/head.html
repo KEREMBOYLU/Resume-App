@@ -3,12 +3,14 @@
   <head>
       <!-- Required meta tags -->
       <meta charset="UTF-8" />
+      {% if favicon %}
       <link rel="icon" href="{{ favicon.url }}" type="image/png">
+      {% endif %}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{{ page_title|default:site_title }}</title>
-      <meta name="keywords" content="{{ site_keywords }}">
-      <meta name="description" content="{{ site_description }}">
-      <meta name="author" content="{{ site_author }}">
+      <title>{% if page_title %}{{ page_title }}{% elif site_title %}{{ site_title }}{% else %}Portfolio{% endif %}</title>
+      <meta name="keywords" content="{{ site_keywords|default_if_none:'' }}">
+      <meta name="description" content="{{ site_description|default_if_none:'' }}">
+      <meta name="author" content="{{ site_author|default_if_none:'' }}">
 
       <!-- FontAwesome from CDN -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

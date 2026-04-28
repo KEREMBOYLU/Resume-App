@@ -3,12 +3,14 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="{% static 'site/favicon.svg' %}" />
+  {% if favicon %}
+  <link rel="icon" href="{{ favicon.url }}" type="image/png">
+  {% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ gs|get_item:'contact_page_title' }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script type="module" crossorigin src="{% static 'site/assets/main-CFswB-Bi.js' %}"></script>
-  <link rel="stylesheet" crossorigin href="{% static 'site/assets/main-Bymxzy8K.css' %}">
+  <script type="module" crossorigin src="{% static 'js/main-CFswB-Bi.js' %}"></script>
+  <link rel="stylesheet" crossorigin href="{% static 'css/main-Bymxzy8K.css' %}">
 </head>
 
 <body
@@ -27,8 +29,8 @@
 
     <div class="mb-16 reveal-up">
       <h1 class="text-5xl lg:text-6xl font-bold text-apple-dark dark:text-white tracking-tight mb-4 transition-colors">
-        {{ gs|get_item:'contact_heading' }}</h1>
-      <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">{{ gs|get_item:'contact_subtitle' }}
+        Get in Touch.</h1>
+      <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">Let’s connect about projects, ideas, internships, or future opportunities.
       </p>
     </div>
     {% if contact_status == 'success' %}
@@ -52,7 +54,7 @@
         <div class="flex items-start gap-5">
           <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-solid fa-house"></i></div>
           <div>
-            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_address_title' }}</h4>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">Address</h4>
             <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_address_desc' }}</p>
           </div>
         </div>
@@ -61,7 +63,7 @@
         <div class="flex items-start gap-5">
           <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-solid fa-phone"></i></div>
           <div>
-            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_phone_title' }}</h4>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">Phone</h4>
             <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_phone_desc' }}</p>
           </div>
         </div>
@@ -70,7 +72,7 @@
         <div class="flex items-start gap-5">
           <div class="text-3xl text-apple-gray dark:text-white/50"><i class="fa-regular fa-envelope"></i></div>
           <div>
-            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'contact_info_email_title' }}</h4>
+            <h4 class="text-[17px] font-bold text-apple-dark dark:text-white transition-colors">Email</h4>
             <p class="text-[15px] font-medium text-apple-gray dark:text-white/60 transition-colors mt-0.5">{{ gs|get_item:'contact_info_email_desc' }}</p>
           </div>
         </div>
@@ -106,7 +108,7 @@
           <div class="md:col-span-2 flex justify-end mt-2">
             <button type="submit"
               class="px-8 py-3.5 bg-apple-dark dark:bg-white text-white dark:text-apple-dark font-bold rounded-xl hover:opacity-80 transition-opacity duration-300">
-              {{ gs|get_item:'contact_form_submit_label' }}
+              Send Message
             </button>
           </div>
 

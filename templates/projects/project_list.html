@@ -11,15 +11,15 @@
         class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
         <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
         <span class="mx-2">/</span>
-        <span class="text-apple-dark dark:text-white transition-colors">{{ gs|get_item:'projects_page_title' }}</span>
+        <span class="text-apple-dark dark:text-white transition-colors">Projects</span>
     </div>
 
     <header class="mb-16 reveal-up">
         <h1 class="text-5xl lg:text-6xl font-bold text-apple-dark dark:text-white tracking-tight mb-4 transition-colors">
-            {{ gs|get_item:'projects_heading' }}
+            Featured Projects.
         </h1>
         <p class="text-xl text-apple-gray dark:text-white/70 font-medium transition-colors">
-            {{ gs|get_item:'projects_subtitle' }}
+            Selected projects I’ve built, improved, and learned from.
         </p>
     </header>
 
