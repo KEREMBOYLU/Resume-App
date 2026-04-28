@@ -23,7 +23,10 @@ services:
       - .:/srv/app
     ports:
       - "0.0.0.0:8000:8000"
-    command: gunicorn portfolio_website.wsgi:application --bind 0.0.0.0:8000
+    command: >
+      sh -c "if [ \"$$DEBUG\" = \"True\" ] || [ \"$$DEBUG\" = \"true\" ];
+      then python manage.py runserver 0.0.0.0:8000;
+      else gunicorn portfolio_website.wsgi:application --bind 0.0.0.0:8000; fi"
   nginx:
     build:
         context: ./nginx

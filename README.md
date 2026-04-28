@@ -113,7 +113,6 @@ Not: `description` alanı yönetim amaçlıdır, frontend'de kullanılmaz.
 | Educations | `school_name`, `major`, `department`, `school_location`, `start_date`, `end_date` | Eğitim sekmesi |
 | Social Medias | `order`, `name`, `link`, `icon` | `icon` HTML olarak gösterilir |
 | Documents | `order`, `slug`, `button_text`, `file` | Navbar'da buton/link oluşturur |
-| Contact Area Infos | `order`, `title`, `description`, `icon`, `link` | Contact sayfası bilgi kutuları |
 | Messages | `name`, `email`, `subject`, `message` | Contact form gönderimleri ile otomatik oluşur |
 
 ---

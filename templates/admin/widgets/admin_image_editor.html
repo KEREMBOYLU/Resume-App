@@ -1,0 +1,105 @@
+<div class="admin-image-editor" data-admin-image-editor tabindex="0">
+    {% if widget.preview_url %}
+        <div class="admin-image-editor__preview-wrap">
+            <img src="{{ widget.preview_url }}" alt="" class="admin-image-editor__preview" data-editor-preview>
+        </div>
+    {% else %}
+        <div class="admin-image-editor__preview-wrap admin-image-editor__preview-wrap--empty" data-editor-empty-preview>
+            No image selected
+        </div>
+    {% endif %}
+
+    <div class="admin-image-editor__input-row">
+        {% if widget.is_initial %}
+            {{ widget.initial_text }}:
+            <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+            {% if not widget.required %}
+                <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
+                <label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+            {% endif %}
+            <br>
+            {{ widget.input_text }}:
+        {% endif %}
+        <input type="{{ widget.type }}" name="{{ widget.name }}"{% for name, value in widget.attrs.items %}{% if value is not False %} {{ name }}{% if value is not True %}="{{ value|stringformat:'s' }}"{% endif %}{% endif %}{% endfor %}>
+        <button type="button" class="button admin-image-editor__paste" data-editor-paste>
+            Paste Image
+        </button>
+        <button type="button" class="button admin-image-editor__open" data-editor-open {% if not widget.preview_url %}hidden{% endif %}>
+            Preview
+        </button>
+    </div>
+    <p class="admin-image-editor__paste-hint" data-editor-paste-hint>
+        Click this image field and press Cmd/Ctrl+V, or use Paste Image.
+    </p>
+
+    <div class="admin-image-editor__modal" data-editor-modal hidden>
+        <div class="admin-image-editor__backdrop" data-editor-close></div>
+        <div class="admin-image-editor__dialog" role="dialog" aria-modal="true" aria-label="Image editor">
+            <div class="admin-image-editor__header">
+                <strong>Resim düzenleyici</strong>
+                <button type="button" class="admin-image-editor__icon-btn" data-editor-close aria-label="Kapat">×</button>
+            </div>
+
+            <div class="admin-image-editor__body">
+                <div class="admin-image-editor__canvas">
+                    <img src="" alt="" data-editor-image>
+                </div>
+
+                <div class="admin-image-editor__side">
+                    <div>
+                        <p class="admin-image-editor__label">Hazır çerçeveler</p>
+                        <div class="admin-image-editor__ratio-grid">
+                            <button type="button" class="button" data-editor-ratio="NaN" data-editor-preset>Free</button>
+                            <button type="button" class="button" data-editor-ratio="1" data-editor-preset>1:1</button>
+                            <button type="button" class="button" data-editor-ratio="0.8" data-editor-preset>4:5</button>
+                            <button type="button" class="button" data-editor-ratio="1.7777777778" data-editor-preset>16:9</button>
+                            <button type="button" class="button" data-editor-ratio="0.5625" data-editor-preset>9:16</button>
+                            <button type="button" class="button" data-editor-ratio="1.5" data-editor-preset>3:2</button>
+                            <button type="button" class="button" data-editor-ratio="1.6" data-editor-preset>Project Cover</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="admin-image-editor__label">Özel ölçü</p>
+                        <div class="admin-image-editor__custom-size">
+                            <label>
+                                Genişlik
+                                <input type="number" min="1" step="1" placeholder="1200" data-editor-custom-width>
+                            </label>
+                            <label>
+                                Yükseklik
+                                <input type="number" min="1" step="1" placeholder="800" data-editor-custom-height>
+                            </label>
+                            <button type="button" class="button" data-editor-apply-size>Uygula</button>
+                            <button type="button" class="button" data-editor-clear-size>Temizle</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="admin-image-editor__label">Zoom</p>
+                        <input type="range" min="0.2" max="3" step="0.01" value="1" data-editor-zoom-range>
+                    </div>
+
+                    <div>
+                        <p class="admin-image-editor__label">Araçlar</p>
+                        <div class="admin-image-editor__tools">
+                            <button type="button" class="button" data-editor-mode="crop">Kırp</button>
+                            <button type="button" class="button" data-editor-mode="move">Taşı</button>
+                            <button type="button" class="button" data-editor-zoom="0.1">Zoom +</button>
+                            <button type="button" class="button" data-editor-zoom="-0.1">Zoom -</button>
+                            <button type="button" class="button" data-editor-rotate="-90">Sola çevir</button>
+                            <button type="button" class="button" data-editor-rotate="90">Sağa çevir</button>
+                            <button type="button" class="button" data-editor-reset>Sıfırla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-image-editor__footer">
+                <span class="admin-image-editor__hint" data-editor-hint>Resmi seç, düzenle, sonra kırpmayı onayla.</span>
+                <button type="button" class="button" data-editor-close>Vazgeç</button>
+                <button type="button" class="button default" data-editor-confirm disabled>Kırpmayı onayla</button>
+            </div>
+        </div>
+    </div>
+</div>

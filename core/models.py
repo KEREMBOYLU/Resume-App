@@ -1,5 +1,5 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils.text import slugify
 from portfolio_website.custom_storage import ImageSettingsStorage, DocumentStorage, MediaStorage
 
 
@@ -91,6 +91,27 @@ class ImageSetting(AbstractModel):
         ordering = ('name',)
 
 
+class SitePreference(AbstractModel):
+    class JourneyTab(models.TextChoices):
+        EXPERIENCE = 'experience', 'Experience'
+        EDUCATION = 'education', 'Education'
+
+    default_journey_tab = models.CharField(
+        default=JourneyTab.EDUCATION,
+        max_length=20,
+        choices=JourneyTab.choices,
+        verbose_name='Default journey tab',
+        help_text='Controls which Journey tab is open when the home page first loads.',
+    )
+
+    def __str__(self):
+        return 'Site Preferences'
+
+    class Meta:
+        verbose_name = 'Site Preferences'
+        verbose_name_plural = 'Site Preferences'
+
+
 class Skill(AbstractModel):
     order = models.IntegerField(
         default=0,
@@ -103,14 +124,12 @@ class Skill(AbstractModel):
         verbose_name='Name',
         help_text='',
     )
-    percentage = models.IntegerField(
-        default=50,
-        verbose_name='Percentage',
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
-    )
-    show_percentage = models.BooleanField(
-        default=True,
-        verbose_name='Show Percentage',
+    category = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='Category',
+        help_text='',
     )
 
     def __str__(self):
@@ -239,6 +258,13 @@ class SocialMedia(AbstractModel):
 
     def __str__(self):
         return f"Social Media: {self.name}"
+
+    @property
+    def function_label(self):
+        label = slugify(self.name or '').replace('-', '_')
+        if not label:
+            label = 'social'
+        return f"open_{label}()"
 
     class Meta:
         verbose_name = 'Social Media'

@@ -1,0 +1,215 @@
+.admin-image-editor {
+    display: grid;
+    gap: 10px;
+    max-width: 720px;
+    outline: none;
+    width: fit-content;
+}
+
+.admin-image-editor:focus-visible {
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary, #79aec8) 28%, transparent);
+}
+
+.admin-image-editor__preview-wrap {
+    align-items: center;
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 8px;
+    color: var(--body-quiet-color, #666);
+    display: inline-flex;
+    min-height: 92px;
+    padding: 8px;
+    width: fit-content;
+}
+
+.admin-image-editor__preview-wrap--empty {
+    min-width: 180px;
+}
+
+.admin-image-editor__preview {
+    border-radius: 6px;
+    display: block;
+    max-height: 120px;
+    max-width: 220px;
+    object-fit: cover;
+}
+
+.admin-image-editor__input-row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-image-editor__paste-hint {
+    color: var(--body-quiet-color, #666);
+    font-size: 12px;
+    margin: -2px 0 0;
+}
+
+.admin-image-editor__paste {
+    white-space: nowrap;
+}
+
+.admin-image-editor__modal[hidden] {
+    display: none;
+}
+
+.admin-image-editor__modal {
+    inset: 0;
+    position: fixed;
+    z-index: 10000;
+}
+
+.admin-image-editor__backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    inset: 0;
+    position: absolute;
+}
+
+.admin-image-editor__dialog {
+    background: var(--body-bg, #fff);
+    border: 1px solid var(--border-color, #ddd);
+    border-radius: 12px;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+    color: var(--body-fg, #111);
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    max-height: min(820px, calc(100vh - 40px));
+    max-width: min(1180px, calc(100vw - 40px));
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.admin-image-editor__header,
+.admin-image-editor__footer {
+    align-items: center;
+    border-color: var(--border-color, #ddd);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 14px 16px;
+}
+
+.admin-image-editor__header {
+    border-bottom: 1px solid var(--border-color, #ddd);
+}
+
+.admin-image-editor__footer {
+    border-top: 1px solid var(--border-color, #ddd);
+    justify-content: flex-end;
+}
+
+.admin-image-editor__hint {
+    color: var(--body-quiet-color, #666);
+    margin-right: auto;
+}
+
+.admin-image-editor__icon-btn {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 1;
+    padding: 0 4px;
+}
+
+.admin-image-editor__body {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    min-height: 480px;
+    overflow: auto;
+    padding: 16px;
+}
+
+.admin-image-editor__canvas {
+    align-items: center;
+    background: #101010;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    min-height: 460px;
+    overflow: hidden;
+}
+
+.admin-image-editor__canvas img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.admin-image-editor__side {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+}
+
+.admin-image-editor__label {
+    color: var(--body-quiet-color, #666);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+}
+
+.admin-image-editor__ratio-grid,
+.admin-image-editor__tools {
+    display: grid;
+    gap: 8px;
+}
+
+.admin-image-editor__tools {
+    grid-template-columns: 1fr 1fr;
+}
+
+.admin-image-editor__preset--active {
+    background: var(--button-hover-bg, #e6e6e6);
+    border-color: var(--primary, #79aec8);
+    color: var(--button-hover-fg, inherit);
+}
+
+.admin-image-editor__custom-size {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.admin-image-editor__custom-size label {
+    color: var(--body-quiet-color, #666);
+    display: grid;
+    font-size: 12px;
+    font-weight: 700;
+    gap: 4px;
+}
+
+.admin-image-editor__custom-size input {
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+.admin-image-editor__custom-size .button {
+    text-align: center;
+}
+
+.admin-image-editor input[type="range"] {
+    width: 100%;
+}
+
+@media (max-width: 860px) {
+    .admin-image-editor__body {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-image-editor__canvas {
+        min-height: 320px;
+    }
+}
