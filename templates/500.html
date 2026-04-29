@@ -13,7 +13,7 @@
 <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-20 lg:py-24">
     <section class="reveal-up">
         <div class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest transition-colors">
-            <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+            <a href="{{ public_site_origin }}{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
             <span class="mx-2">/</span>
             <span class="text-apple-dark dark:text-white transition-colors">500</span>
         </div>
@@ -34,15 +34,15 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4" style="margin-top: 3.5rem;">
-                    <a href="{% url 'index' %}"
+                    <a href="{{ public_site_origin }}{% url 'index' %}"
                        class="inline-flex items-center justify-center rounded-xl bg-apple-dark dark:bg-white px-6 py-3 text-sm font-bold text-white dark:text-apple-dark hover:opacity-80 transition-opacity">
                         Back Home
                     </a>
-                    <a href="{% url 'projects' %}"
+                    <a href="{{ public_site_origin }}{% url 'projects' %}"
                        class="inline-flex items-center justify-center rounded-xl border border-black/10 dark:border-white/10 px-6 py-3 text-sm font-bold text-apple-dark dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
                         View Projects
                     </a>
-                    <a href="{% url 'contact' %}"
+                    <a href="{{ public_site_origin }}{% url 'contact' %}"
                        class="inline-flex items-center justify-center rounded-xl border border-black/10 dark:border-white/10 px-6 py-3 text-sm font-bold text-apple-dark dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
                         Contact
                     </a>

@@ -4,15 +4,15 @@
 <nav id="primary-nav"
      class="fixed top-0 w-full z-50 bg-apple-bg/80 dark:bg-[#121212]/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="{% url 'index' %}" class="text-xl font-bold tracking-tight text-apple-dark dark:text-white transition-colors z-10"><span
+        <a href="{{ public_site_origin }}{% url 'index' %}" class="text-xl font-bold tracking-tight text-apple-dark dark:text-white transition-colors z-10"><span
                 data-brand-typing>{{ site_brand_short|default:"KB." }}</span></a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 space-x-12 items-center text-sm font-medium z-10 w-max">
-            <a href="{% url 'index' %}#home" class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'home' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Home</a>
-            <a href="{% url 'projects' %}"
+            <a href="{{ public_site_origin }}{% url 'index' %}#home" class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'home' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Home</a>
+            <a href="{{ public_site_origin }}{% url 'projects' %}"
                class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'projects' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Projects</a>
-            <a href="{% url 'contact' %}"
+            <a href="{{ public_site_origin }}{% url 'contact' %}"
                class="text-apple-dark dark:text-white transition-colors {% if active_nav == 'contact' %}opacity-100{% else %}opacity-60 hover:opacity-100{% endif %}">Contact</a>
         </div>
 

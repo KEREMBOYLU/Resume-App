@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, SitePreference
 from projects.models import Project
 
@@ -53,6 +54,7 @@ def layout(request):
         'favicon': get_image_setting('favicon'),
         'social_medias': SocialMedia.objects.all().order_by('order'),
         'documents': Document.objects.all().order_by('order'),
+        'public_site_origin': settings.PUBLIC_SITE_ORIGIN,
     }
     return context
 

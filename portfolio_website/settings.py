@@ -32,6 +32,8 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS', cast=list)
 
 CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS', cast=list)
 
+PUBLIC_SITE_ORIGIN = env('PUBLIC_SITE_ORIGIN', default='').rstrip('/')
+
 # Application definition
 
 INSTALLED_APPS = [
