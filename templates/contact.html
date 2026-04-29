@@ -22,7 +22,7 @@
 
     <div
       class="mb-6 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
-      <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
+      <a href="{{ public_site_origin }}{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
       <span class="mx-2">/</span>
       <span class="text-apple-dark dark:text-white transition-colors">Contact</span>
     </div>
@@ -119,6 +119,7 @@
 
   </main>
 
+  {% include 'includes/footer.html' %}
 
 </body>
 

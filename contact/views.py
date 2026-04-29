@@ -45,4 +45,4 @@ def contact(request):
         'contact_form': ContactForm(),
         'contact_status': request.GET.get('contact_status', ''),
     }
-    return render(request, 'site/contact/index.html', context=context)
+    return render(request, 'contact.html', context=context)
