@@ -38,6 +38,7 @@ services:
     volumes:
       - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/nginx.conf:ro
       - ./nginx/ssl:/etc/nginx/ssl:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - app
 
