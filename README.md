@@ -34,8 +34,12 @@ cd Resume-App
 ```
 ### 2. Configure environment variables
 ```bash
-cp portfolio_website/env.txt .env
+cp portfolio_website/docker.env.example portfolio_website/docker.env
 ```
+Edit `portfolio_website/docker.env` for your machine. This file is used for both
+local Docker development and production Docker deployments, but the values should
+be different on your Mac and on the VPS. Do not commit it.
+
 ### 3. Run the application using Docker
 ```bash
 docker compose up --build
@@ -46,7 +50,9 @@ The app will be available at:
 ### 4. Access the Django Admin Panel
 
 Once the server is running, go to:  
-🔗 http://localhost:8000/admin
+🔗 http://admin.localhost
+
+The main site `/admin/` path is intentionally not used for Django admin.
 
 To create a superuser, run:
 ```bash
@@ -63,6 +69,21 @@ docker compose run app python manage.py migrate
 ### 6. Collect static files
 ```bash
 docker compose run app python manage.py collectstatic
+```
+
+### Production deployment
+
+On the VPS, use the production Compose file so Nginx can bind separately to the
+public IP and the Tailscale IP:
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
+```
+
+Production admin access is intended for Tailscale only. Public requests to
+`admin.keremboylu.com.tr` return 404, while your Mac can reach the admin by
+resolving `admin.keremboylu.com.tr` to the VPS Tailscale IP:
+```text
+100.118.32.110 admin.keremboylu.com.tr
 ```
 
 ---

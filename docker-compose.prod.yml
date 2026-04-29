@@ -8,6 +8,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql
     command: -p 5432
+
   app:
     container_name: app_portfolio_website
     hostname: app_portfolio_website
@@ -26,18 +27,19 @@ services:
       sh -c "if [ \"$$DEBUG\" = \"True\" ] || [ \"$$DEBUG\" = \"true\" ];
       then python manage.py runserver 0.0.0.0:8000;
       else gunicorn portfolio_website.wsgi:application --bind 0.0.0.0:8000; fi"
+
   nginx:
     build:
-        context: ./nginx
-        dockerfile: Dockerfile
+      context: ./nginx
+      dockerfile: Dockerfile
     restart: unless-stopped
     image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
+    network_mode: host
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
     depends_on:
       - app
-
 
 volumes:
   postgres_data:
