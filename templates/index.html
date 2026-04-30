@@ -138,6 +138,10 @@
             line-height: 0.95;
         }
 
+        .about-right-divider {
+            display: none;
+        }
+
         .about-right-title {
             margin-top: 2rem;
         }
@@ -147,7 +151,7 @@
                 grid-template-columns: 1fr 1fr;
                 grid-template-areas:
                     "left-title right-title"
-                    "left-subtitle right-divider"
+                    "left-subtitle right-content"
                     "left-content right-content";
                 column-gap: 4rem;
                 row-gap: 1.25rem;
@@ -165,9 +169,8 @@
             .about-left-title { grid-area: left-title; }
             .about-right-title { grid-area: right-title; }
             .about-left-subtitle { grid-area: left-subtitle; }
-            .about-right-divider { grid-area: right-divider; align-self: center; }
             .about-left-content { grid-area: left-content; }
-            .about-right-content { grid-area: right-content; }
+            .about-right-content { grid-area: right-content; align-self: start; }
         }
     </style>
 
