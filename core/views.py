@@ -97,7 +97,7 @@ def index(request):
         'skills': Skill.objects.all().order_by('order'),
         'experiences': Experience.objects.all().order_by('-start_date'),
         'educations': Education.objects.all().order_by('-start_date'),
-        'projects': Project.objects.exclude(status=Project.Status.DRAFT).select_related('category').prefetch_related('hero_links').order_by('order', 'created_at'),
+        'projects': Project.objects.exclude(status=Project.Status.DRAFT).filter(is_featured=True).select_related('category').prefetch_related('hero_links').order_by('order', 'created_at')[:3],
         'journey_default_tab': site_preference.default_journey_tab,
     })
     return render(request, 'index.html', context=context)
