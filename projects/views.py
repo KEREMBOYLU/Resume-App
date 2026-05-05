@@ -33,18 +33,33 @@ def project_detail(request, slug):
         ),
         slug=slug,
     )
+    project_sections = list(project.sections.all())
+    overview_section = next(
+        (
+            section for section in project_sections
+            if section.section_type == ProjectSection.SectionType.CUSTOM_HTML
+            and section.title.strip().lower() == 'project overview'
+        ),
+        None,
+    )
+    content_sections = [
+        section for section in project_sections
+        if section != overview_section
+    ]
     gallery_images = project.images.filter(
         image_type=ProjectImage.ImageType.GALLERY,
         is_active=True,
     ).order_by('order', 'id')
     has_gallery_section = any(
         section.section_type == ProjectSection.SectionType.GALLERY
-        for section in project.sections.all()
+        for section in project_sections
     )
 
     context = layout(request)
     context.update({
         'project': project,
+        'overview_section': overview_section,
+        'content_sections': content_sections,
         'gallery_images': gallery_images,
         'has_gallery_section': has_gallery_section,
     })

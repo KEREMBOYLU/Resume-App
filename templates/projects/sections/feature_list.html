@@ -9,8 +9,8 @@
     <ul>
       {% for feature in section.feature_items %}
         {% with title=feature|feature_title description=feature|feature_description %}
-          <li class="flex items-start gap-3 text-[15px] text-apple-dark/70 dark:text-white/65">
-            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-apple-dark dark:bg-white shrink-0"></span>
+          <li class="flex items-start gap-3 text-[17px] leading-relaxed font-medium text-apple-dark/75 dark:text-white/70">
+            <span class="mt-[0.7rem] w-1.5 h-1.5 rounded-full bg-apple-dark dark:bg-white shrink-0"></span>
             <span>
               {% if title %}{{ title }}{% endif %}
               {% if description %}

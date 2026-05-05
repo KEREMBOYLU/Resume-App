@@ -1,15 +1,15 @@
 <!--================Footer Area =================-->
 <footer class="mt-auto py-12 border-t border-black/5 dark:border-white/5 reveal-up transition-colors duration-500">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="grid items-center gap-4" style="grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);">
-        <p class="min-w-0 text-left text-sm font-bold tracking-tight text-apple-dark dark:text-white transition-colors">
+      <div class="grid items-center justify-items-center gap-5 md:gap-4 md:[grid-template-columns:minmax(0,1fr)_auto_minmax(0,1fr)]">
+        <p class="min-w-0 text-center md:text-left text-sm font-bold tracking-tight text-apple-dark dark:text-white transition-colors md:justify-self-start">
           {{ site_footer_brand }}
         </p>
         <p class="whitespace-nowrap text-center text-apple-gray dark:text-white/50 text-xs font-semibold uppercase tracking-wider transition-colors">
           {{ site_footer_copyright }}
         </p>
       {% if social_medias %}
-      <nav class="min-w-0 flex flex-nowrap items-center justify-end gap-4 whitespace-nowrap" aria-label="Social media links">
+      <nav class="min-w-0 flex flex-col sm:flex-row items-center justify-center md:justify-end gap-3 sm:gap-4 md:justify-self-end" aria-label="Social media links">
         {% for social in social_medias %}
         <a href="{{ social.link }}" target="_blank" rel="noopener noreferrer"
            class="inline-flex items-center gap-2 text-sm font-semibold text-apple-gray dark:text-white/60 hover:text-apple-dark dark:hover:text-white transition-colors">

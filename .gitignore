@@ -164,6 +164,11 @@ media
 
 docker.txt
 
+# Local database backups/dumps
+backups/
+*.sql
+*.sql.gz
+
 # Local/secret SSL files
 nginx/ssl/
 *.pem
