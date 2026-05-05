@@ -1,12 +1,12 @@
 {% load settings_extras %}
 
-<article class="space-y-4">
+<article class="project-section project-section--support space-y-4">
   {% if section.title %}
     <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">{{ section.title }}</h2>
   {% endif %}
 
   {% if section.feature_items %}
-    <ul class="space-y-3">
+    <ul>
       {% for feature in section.feature_items %}
         {% with title=feature|feature_title description=feature|feature_description %}
           <li class="flex items-start gap-3 text-[15px] text-apple-dark/70 dark:text-white/65">

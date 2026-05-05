@@ -1,28 +1,31 @@
-<article class="space-y-4">
+<article class="project-section project-section--wide project-section--timeline">
   {% if section.title %}
     <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">{{ section.title }}</h2>
   {% endif %}
 
   {% if section.timeline_items %}
-    <ol class="relative border-l border-black/10 dark:border-white/10 pl-6 space-y-7">
+    <ol class="project-timeline" aria-label="{{ section.title|default:'Project timeline' }}">
       {% for item in section.timeline_items %}
-        <li class="relative">
-          <span class="absolute -left-[31px] top-2 h-3 w-3 rounded-full bg-apple-dark dark:bg-white ring-4 ring-apple-bg dark:ring-[#121212]"></span>
-          {% if item.date or item.period %}
-            <p class="mb-2 inline-flex rounded-full bg-black/5 dark:bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-apple-gray dark:text-white/50">
-              {% if item.date %}{{ item.date }}{% else %}{{ item.period }}{% endif %}
-            </p>
-          {% endif %}
-          {% if item.title %}
-            <h3 class="text-base font-bold mb-2 text-apple-dark dark:text-white">{{ item.title }}</h3>
-          {% endif %}
-          {% if item.description %}
-            <p class="text-[15px] text-apple-dark/70 dark:text-white/65 leading-relaxed">{{ item.description }}</p>
-          {% elif item.text %}
-            <p class="text-[15px] text-apple-dark/70 dark:text-white/65 leading-relaxed">{{ item.text }}</p>
-          {% else %}
-            <p class="text-[15px] text-apple-dark/70 dark:text-white/65 leading-relaxed">{{ item }}</p>
-          {% endif %}
+        <li class="project-timeline__item">
+          <span class="project-timeline__node" aria-hidden="true"></span>
+          <span class="project-timeline__connector" aria-hidden="true"></span>
+          <div class="project-timeline__card">
+            {% if item.date or item.period %}
+              <p class="project-timeline__date">
+                {% if item.date %}{{ item.date }}{% else %}{{ item.period }}{% endif %}
+              </p>
+            {% endif %}
+            {% if item.title %}
+              <h3 class="project-timeline__title">{{ item.title }}</h3>
+            {% endif %}
+            {% if item.description %}
+              <p class="project-timeline__description">{{ item.description }}</p>
+            {% elif item.text %}
+              <p class="project-timeline__description">{{ item.text }}</p>
+            {% else %}
+              <p class="project-timeline__description">{{ item }}</p>
+            {% endif %}
+          </div>
         </li>
       {% endfor %}
     </ol>

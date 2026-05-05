@@ -37,9 +37,12 @@
 
     .project-rich-text p {
       margin: 0 0 1rem;
-      color: rgb(29 29 31 / 0.72);
-      font-size: 15px;
-      line-height: 1.75;
+      color: rgb(29 29 31 / 0.75);
+      font-size: 17px;
+      line-height: 1.625;
+      text-align: justify;
+      text-align-last: left;
+      text-indent: 1.25rem;
     }
 
     .project-rich-text p:last-child {
@@ -50,9 +53,9 @@
     .project-rich-text ol {
       margin: 1rem 0;
       padding-left: 1.25rem;
-      color: rgb(29 29 31 / 0.72);
-      font-size: 15px;
-      line-height: 1.75;
+      color: rgb(29 29 31 / 0.75);
+      font-size: 17px;
+      line-height: 1.625;
     }
 
     .project-rich-text ul {
@@ -76,7 +79,7 @@
     .dark .project-rich-text p,
     .dark .project-rich-text ul,
     .dark .project-rich-text ol {
-      color: rgb(255 255 255 / 0.65);
+      color: rgb(255 255 255 / 0.70);
     }
 
     .dark .project-rich-text strong,
@@ -92,12 +95,321 @@
     .project-rich-text a:hover {
       color: #3395ff;
     }
+
+    .project-summary-text {
+      text-align: justify;
+      text-align-last: left;
+      text-indent: 1.25rem;
+    }
+
+    .project-report-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(2rem, 5vw, 4rem);
+      row-gap: clamp(2.25rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .project-section {
+      min-width: 0;
+    }
+
+    .project-section--text {
+      grid-column: 1 / -1;
+    }
+
+    .project-section--support {
+      grid-column: 1 / -1;
+    }
+
+    .project-section--wide {
+      grid-column: 1 / -1;
+    }
+
+    .project-section--text .project-rich-text {
+      max-width: none;
+    }
+
+    .project-section--support,
+    .project-section--tech {
+      border: 1px solid rgb(0 0 0 / 0.08);
+      border-radius: 18px;
+      background: rgb(255 255 255 / 0.58);
+      box-shadow: 0 14px 34px rgb(0 0 0 / 0.045);
+      padding: 1.35rem;
+    }
+
+    .dark .project-section--support,
+    .dark .project-section--tech {
+      border-color: rgb(255 255 255 / 0.10);
+      background: linear-gradient(145deg, rgb(255 255 255 / 0.065), rgb(255 255 255 / 0.028));
+      box-shadow: 0 18px 45px rgb(0 0 0 / 0.18);
+    }
+
+    .project-section--support h2,
+    .project-section--tech h2 {
+      font-size: 1rem;
+    }
+
+    .project-section--support ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: 0.9rem;
+    }
+
+    .project-section--support li {
+      border: 1px solid rgb(0 0 0 / 0.07);
+      border-radius: 14px;
+      padding: 0.9rem;
+    }
+
+    .project-section--support li:first-child {
+      border-top: 1px solid rgb(0 0 0 / 0.07);
+      padding-top: 0.9rem;
+    }
+
+    .dark .project-section--support li {
+      border-color: rgb(255 255 255 / 0.08);
+    }
+
+    .project-section--tech {
+      grid-column: 1 / -1;
+    }
+
+    .project-section--timeline > h2 {
+      max-width: 980px;
+      margin-inline: auto;
+    }
+
+    .project-timeline {
+      --timeline-accent: var(--secondary-color);
+      --timeline-accent-soft: color-mix(in srgb, var(--timeline-accent) 14%, transparent);
+      --timeline-accent-border: color-mix(in srgb, var(--timeline-accent) 32%, transparent);
+      --timeline-line: color-mix(in srgb, var(--timeline-accent) 42%, transparent);
+      --timeline-node-ring: color-mix(in srgb, var(--timeline-accent) 16%, transparent);
+      --timeline-node-glow: color-mix(in srgb, var(--timeline-accent) 22%, transparent);
+      --timeline-node-border: #fbfbfd;
+      --timeline-card-bg: linear-gradient(145deg, rgb(255 255 255 / 0.96), rgb(245 245 247 / 0.94));
+      --timeline-card-border: rgb(0 0 0 / 0.08);
+      --timeline-card-shadow: 0 16px 36px rgb(0 0 0 / 0.08);
+      --timeline-title: rgb(29 29 31 / 0.92);
+      --timeline-description: rgb(29 29 31 / 0.66);
+      position: relative;
+      width: min(100%, 980px);
+      margin: 1.5rem auto 0;
+      padding: 0.75rem 0 0.25rem;
+    }
+
+    .dark .project-timeline {
+      --timeline-accent-soft: color-mix(in srgb, var(--timeline-accent) 18%, transparent);
+      --timeline-accent-border: color-mix(in srgb, var(--timeline-accent) 38%, transparent);
+      --timeline-line: color-mix(in srgb, var(--timeline-accent) 48%, transparent);
+      --timeline-node-ring: color-mix(in srgb, var(--timeline-accent) 18%, transparent);
+      --timeline-node-glow: color-mix(in srgb, var(--timeline-accent) 32%, transparent);
+      --timeline-node-border: #121212;
+      --timeline-card-bg: linear-gradient(145deg, rgb(31 31 33 / 0.96), rgb(20 20 22 / 0.96));
+      --timeline-card-border: rgb(255 255 255 / 0.10);
+      --timeline-card-shadow: 0 18px 45px rgb(0 0 0 / 0.26);
+      --timeline-title: rgb(255 255 255 / 0.94);
+      --timeline-description: rgb(255 255 255 / 0.64);
+    }
+
+    .project-timeline::before {
+      content: "";
+      position: absolute;
+      top: 0.75rem;
+      bottom: 0.25rem;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, var(--timeline-line) 8%, var(--timeline-line) 92%, transparent);
+      transform: translateX(-50%);
+    }
+
+    .project-timeline__item {
+      --timeline-node-size: 18px;
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr);
+      align-items: center;
+      min-height: 132px;
+    }
+
+    .project-timeline__item + .project-timeline__item {
+      margin-top: 1.75rem;
+    }
+
+    .project-timeline__node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      width: var(--timeline-node-size);
+      height: var(--timeline-node-size);
+      border-radius: 9999px;
+      background: var(--timeline-accent);
+      border: 3px solid var(--timeline-node-border);
+      box-shadow: 0 0 0 6px var(--timeline-node-ring), 0 0 22px var(--timeline-node-glow);
+      transform: translate(-50%, -50%);
+    }
+
+    .project-timeline__connector {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      width: 42px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--timeline-accent));
+      transform: translateY(-50%);
+    }
+
+    .project-timeline__card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      border: 1px solid var(--timeline-card-border);
+      border-radius: 18px;
+      background: var(--timeline-card-bg);
+      box-shadow: var(--timeline-card-shadow);
+      padding: 1.35rem;
+      backdrop-filter: blur(18px);
+    }
+
+    .project-timeline__date {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      border: 1px solid var(--timeline-accent-border);
+      border-radius: 9999px;
+      background: var(--timeline-accent-soft);
+      color: var(--timeline-accent);
+      padding: 0.35rem 0.72rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-timeline__title {
+      margin-top: 0.9rem;
+      color: var(--timeline-title);
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .project-timeline__description {
+      margin-top: 0.55rem;
+      color: var(--timeline-description);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .project-timeline__item:nth-child(odd) .project-timeline__card {
+      grid-column: 1;
+      text-align: right;
+    }
+
+    .project-timeline__item:nth-child(odd) .project-timeline__date {
+      margin-left: auto;
+    }
+
+    .project-timeline__item:nth-child(odd) .project-timeline__connector {
+      right: calc(50% + (var(--timeline-node-size) / 2));
+    }
+
+    .project-timeline__item:nth-child(even) .project-timeline__card {
+      grid-column: 3;
+    }
+
+    .project-timeline__item:nth-child(even) .project-timeline__connector {
+      left: calc(50% + (var(--timeline-node-size) / 2));
+      background: linear-gradient(90deg, var(--timeline-accent), transparent);
+    }
+
+    @media (max-width: 1023px) {
+      .project-report-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2.25rem;
+      }
+
+      .project-section--text,
+      .project-section--support,
+      .project-section--wide,
+      .project-section--tech {
+        grid-column: 1 / -1;
+      }
+
+      .project-section--text .project-rich-text {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .project-section--support,
+      .project-section--tech {
+        border-radius: 16px;
+        padding: 1.1rem;
+      }
+
+      .project-timeline {
+        width: min(100%, 42rem);
+        padding-left: 1.65rem;
+      }
+
+      .project-timeline::before {
+        left: 0.5rem;
+      }
+
+      .project-timeline__item {
+        display: block;
+        min-height: 0;
+        padding-left: 1.5rem;
+      }
+
+      .project-timeline__item + .project-timeline__item {
+        margin-top: 1.35rem;
+      }
+
+      .project-timeline__node {
+        position: absolute;
+        left: -1.65rem;
+        top: 1.35rem;
+        --timeline-node-size: 16px;
+        width: 16px;
+        height: 16px;
+        transform: none;
+      }
+
+      .project-timeline__connector {
+        left: -1.15rem !important;
+        right: auto !important;
+        top: 1.83rem;
+        width: 2.65rem;
+        background: linear-gradient(90deg, var(--timeline-accent), transparent) !important;
+      }
+
+      .project-timeline__item:nth-child(odd) .project-timeline__card,
+      .project-timeline__item:nth-child(even) .project-timeline__card {
+        grid-column: auto;
+        text-align: left;
+      }
+
+      .project-timeline__item:nth-child(odd) .project-timeline__date {
+        margin-left: 0;
+      }
+
+      .project-timeline__card {
+        border-radius: 16px;
+        padding: 1.1rem;
+      }
+    }
   </style>
 </head>
 <body class="relative min-h-screen bg-apple-bg dark:bg-[#121212] transition-colors duration-500 overflow-x-hidden pt-24 font-sans flex flex-col text-apple-dark dark:text-white/90">
   {% include 'includes/navbar.html' with active_nav='projects' %}
 
-  <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-16 md:py-20 space-y-16">
+  <main class="w-full flex-1 max-w-6xl mx-auto px-6 py-16 md:py-20 space-y-12">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-xs font-mono text-apple-gray dark:text-white/50 uppercase tracking-widest reveal-up transition-colors">
       <div>
         <a href="{% url 'index' %}" class="hover:text-apple-blue dark:hover:text-apple-blue transition-colors">~ / Home</a>
@@ -113,7 +425,7 @@
 
     {% include 'projects/partials/project_hero.html' with project=project %}
 
-    <section class="reveal-up space-y-14 max-w-3xl">
+    <section class="reveal-up project-report-grid">
       {% for section in project.sections.all %}
         {% if section.section_type == 'feature_list' %}
           {% include 'projects/sections/feature_list.html' with section=section %}
@@ -125,7 +437,7 @@
       {% endfor %}
 
       {% if project.tech_stack_items %}
-        <article class="space-y-4">
+        <article class="project-section project-section--tech space-y-4">
           <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">Tech Stack</h2>
           <div class="flex flex-wrap gap-2">
             {% for tech in project.tech_stack_items %}
