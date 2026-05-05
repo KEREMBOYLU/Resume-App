@@ -425,7 +425,7 @@
 
     {% include 'projects/partials/project_hero.html' with project=project %}
 
-    <section class="reveal-up project-report-grid">
+    <section class="project-report-grid">
       {% for section in project.sections.all %}
         {% if section.section_type == 'feature_list' %}
           {% include 'projects/sections/feature_list.html' with section=section %}
@@ -437,7 +437,7 @@
       {% endfor %}
 
       {% if project.tech_stack_items %}
-        <article class="project-section project-section--tech space-y-4">
+        <article class="reveal-up project-section project-section--tech space-y-4">
           <h2 class="text-xl font-bold tracking-tight text-apple-dark dark:text-white">Tech Stack</h2>
           <div class="flex flex-wrap gap-2">
             {% for tech in project.tech_stack_items %}
