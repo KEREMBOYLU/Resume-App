@@ -433,6 +433,8 @@
           {% include 'projects/sections/timeline.html' with section=section %}
         {% elif section.section_type == 'custom_html' %}
           {% include 'projects/sections/custom_html.html' with section=section %}
+        {% elif section.section_type == 'gallery' %}
+          {% include 'projects/sections/gallery.html' with section=section gallery_images=gallery_images project=project %}
         {% endif %}
       {% endfor %}
 
@@ -447,12 +449,6 @@
         </article>
       {% endif %}
     </section>
-
-    {% for section in project.sections.all %}
-      {% if section.section_type == 'gallery' %}
-        {% include 'projects/sections/gallery.html' with section=section gallery_images=gallery_images project=project %}
-      {% endif %}
-    {% endfor %}
 
     {% if gallery_images and not has_gallery_section %}
       {% include 'projects/sections/gallery.html' with gallery_images=gallery_images project=project %}
