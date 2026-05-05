@@ -79,6 +79,9 @@ class ProjectAdmin(admin.ModelAdmin):
     ordering = ('order', '-created_at')
     list_editable = ('status', 'is_featured', 'order')
 
+    class Media:
+        js = ('admin/js/project_json_import.js',)
+
 
 @admin.register(ProjectLink)
 class ProjectLinkAdmin(admin.ModelAdmin):
