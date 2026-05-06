@@ -1,164 +1,68 @@
-# 🧾 Resume App –  Portfolio Website with Django
+# Resume App
 
-A fully responsive personal portfolio website built with Django. Designed to showcase personal projects, technical skills, and contact information in a clean and professional layout. Deployed using Docker and served with Nginx and Gunicorn, with AWS S3 integration for media file handling.
+A Django-based personal portfolio and project management website built to showcase projects, skills, contact information, and dynamic project detail pages with admin-managed content.
 
----
+- Live project page: https://keremboylu.com.tr/projects/resume-app/
+- Live website: https://keremboylu.com.tr
+- GitHub: https://github.com/KEREMBOYLU/Resume-App
 
-## ✨ Features
+## Project Overview
 
-- Dynamic project listing from the database
-- Contact section (extendable form)
-- Admin panel via Django admin interface
-- Responsive design (mobile & desktop)
-- Dockerized deployment with PostgreSQL
-- Static/media file management with AWS S3
+Resume App is a personal portfolio website built with Django to manage and display projects, skills, contact information, and resume-related content from a structured admin panel.
 
----
+The project evolved from a basic portfolio website into a dynamic project content management system where projects can be created, edited, organized, and displayed through responsive frontend pages.
 
-## 🛠️ Technologies Used
+The application is deployed with a production-ready setup using Docker, PostgreSQL, Nginx, Gunicorn, AWS S3, and secure admin access through Tailscale VPN.
 
-- **Backend:** Python, Django, PostgreSQL  
-- **Frontend:** HTML, CSS, JavaScript (via Django templates)  
-- **DevOps:** Docker, Docker Compose, Nginx, Gunicorn  
-- **Storage:** AWS S3  
-- **Version Control:** Git & GitHub
+## Key Features
 
----
+- Dynamic project listing and project detail pages
+- Admin-managed project sections, links, images, and timeline content
+- Responsive portfolio layout for desktop and mobile devices
+- Django admin panel for structured portfolio content management
+- Contact form and portfolio content sections
+- Docker-based local and production deployment setup
+- PostgreSQL database integration
+- AWS S3 static and media file storage
+- Secure admin access through Tailscale VPN
 
-## 🚀 Getting Started
+## Tech Stack
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/KEREMBOYLU/Resume-App.git
-cd Resume-App
-```
-### 2. Configure environment variables
-```bash
-cp portfolio_website/docker.env.example portfolio_website/docker.env
-```
-Edit `portfolio_website/docker.env` for your machine. This file is used for both
-local Docker development and production Docker deployments, but the values should
-be different on your Mac and on the VPS. Do not commit it.
+- Python
+- Django
+- PostgreSQL
+- Docker
+- Docker Compose
+- Nginx
+- Gunicorn
+- AWS S3
+- Tailscale
+- HTML
+- CSS
+- JavaScript
+- django-hosts
 
-### 3. Run the application using Docker
-```bash
-docker compose up --build
-```
-The app will be available at:
-🔗 http://localhost:8000
+## Technical Approach
 
-### 4. Access the Django Admin Panel
+The application is built around Django models that separate project metadata, project sections, project links, and project images. This makes the portfolio content easier to maintain from the admin panel without changing templates for every new project.
 
-Once the server is running, go to:  
-🔗 http://admin.localhost
+The frontend uses reusable templates for project cards, project detail sections, galleries, timelines, and feature lists. Project data flows from the database into Django views, then into responsive templates that adapt across light and dark themes.
 
-The main site `/admin/` path is intentionally not used for Django admin.
+The production environment uses Docker, Gunicorn, Nginx, PostgreSQL, AWS S3, and Tailscale. This keeps local development, media handling, deployment, production routing, and restricted admin access organized.
 
-To create a superuser, run:
-```bash
-docker compose run app python manage.py createsuperuser
-```
-### 5. Run Migrations
-5. Run migrations (first-time setup)
-> 💡 **Note:** Run `makemigrations` and `migrate` every time you change your Django models.
-```bash
-docker compose run app python manage.py makemigrations 
-docker compose run app python manage.py migrate
-```
+## Project Timeline
 
-### 6. Collect static files
-```bash
-docker compose run app python manage.py collectstatic
-```
-
-### Production deployment
-
-On the VPS, use the production Compose file so Nginx can bind separately to the
-public IP and the Tailscale IP:
-```bash
-docker compose -f docker-compose.prod.yml up --build -d
-```
-
-Production admin access is intended for Tailscale only. Public requests to
-`admin.keremboylu.com.tr` return 404, while your Mac can reach the admin by
-resolving `admin.keremboylu.com.tr` to the VPS Tailscale IP:
-```text
-100.118.32.110 admin.keremboylu.com.tr
-```
-
----
-
-## 🧩 Admin Content Keys Guide
-
-Bu bölüm, Django Admin panelinde hangi kayıtların hangi alanlara girileceğini özetler.
-
-### General Settings (Core > General Settings)
-
-`name` alanı key olarak kullanılır. Değerler aşağıdaki şekilde girilmelidir:
-
-| name (key) | Doldurulacak alan | Tip | Kullanım |
-|---|---|---|---|
-| `site_title` | `parameter` | kısa metin | `<title>` |
-| `site_keywords` | `parameter` | kısa metin | meta keywords |
-| `site_description` | `parameter` | kısa metin | meta description |
-| `site_author` | `parameter` | kısa metin | meta author |
-| `home_banner_name` | `parameter` | kısa metin | ana banner isim |
-| `home_banner_title` | `parameter` | kısa metin | ana banner ünvan |
-| `home_banner_description` | `parameter` | kısa metin | ana banner açıklama |
-| `home_banner_birthdate` | `parameter` | kısa metin | doğum tarihi satırı |
-| `home_banner_gsm` | `parameter` | kısa metin | `tel:` linki |
-| `home_banner_telephone` | `parameter` | kısa metin | telefonda görünen metin |
-| `home_banner_email` | `parameter` | kısa metin | `mailto:` + görünen metin |
-| `home_banner_location` | `parameter` | kısa metin | lokasyon satırı |
-| `about_myself_welcome` | `text_parameter` | uzun metin / HTML | About Myself paragrafı |
-| `about_myself_footer` | `parameter` | kısa/orta metin | footer About Me |
-
-Not: `description` alanı yönetim amaçlıdır, frontend'de kullanılmaz.
-
-### Image Settings (Core > Image Settings)
-
-`name` alanı key olarak kullanılır:
-
-| name (key) | Doldurulacak alan | Tip | Kullanım |
-|---|---|---|---|
-| `logo` | `file` | görsel | navbar logo |
-| `favicon` | `file` | görsel | tarayıcı favicon |
-| `home_banner_photo` | `file` | görsel | anasayfa profil fotoğrafı |
-
-### Diğer Modeller
-
-| Model | Temel alanlar | Not |
+| Date | Milestone | Description |
 |---|---|---|
-| Skills | `order`, `name`, `percentage`, `show_percentage` | Yetenek çubukları |
-| Experiences | `company_name`, `job_title`, `job_location`, `start_date`, `end_date` | `end_date` boşsa "Present" |
-| Educations | `school_name`, `major`, `department`, `school_location`, `start_date`, `end_date` | Eğitim sekmesi |
-| Social Medias | `order`, `name`, `link`, `icon` | `icon` HTML olarak gösterilir |
-| Documents | `order`, `slug`, `button_text`, `file` | Navbar'da buton/link oluşturur |
-| Messages | `name`, `email`, `subject`, `message` | Contact form gönderimleri ile otomatik oluşur |
+| 29.06.2023 | Project Kickoff | Started the portfolio website project and created the initial repository structure. |
+| 30.06.2023 | Django and Docker Foundation | Created the Django project structure, core app setup, Docker configuration, environment handling, and local development workflow. |
+| 03.07.2023 | Portfolio Content Models | Added dynamic content areas such as skills, education, experience, social links, documents, and contact-related models. |
+| 06.07.2023 | AWS S3 Media Storage | Integrated AWS S3 storage for static and media files and updated production media handling. |
+| 14.04.2026 | Production Routing and Deployment Polish | Improved production settings, HTTPS behavior, domain handling, S3 URLs, and Docker deployment configuration. |
+| 28.04.2026 | Project CMS Upgrade | Added project models, project detail pages, dynamic project sections, and admin-managed portfolio content. |
+| 05.05.2026 | Project Detail Page Polish | Improved project detail layouts, mobile behavior, gallery ordering, timeline rendering, and responsive spacing. |
+| 06.05.2026 | Content Management Workflow | Improved the admin workflow for creating and updating project content faster through structured project data. |
+| 06.05.2026 | Production Deployment Finalization | Finalized the production deployment setup with Docker, Gunicorn, Nginx, PostgreSQL, AWS S3, HTTPS configuration, and domain routing. |
+| 06.05.2026 | Secure Admin Access Setup | Restricted admin access through Tailscale VPN to keep the management panel private and accessible only from trusted devices. |
+| 06.05.2026 | Final Project Polish | Reviewed project content, improved responsive layout details, cleaned unnecessary technical noise, and prepared the portfolio website for public presentation. |
 
----
-
-## 🐳 Installing Docker & Docker Compose
-
-Make sure Docker and Docker Compose are installed on your system before running the project.
-
-### 🔹 On macOS / Windows
-
-Download Docker Desktop from the official website:  
-🔗 https://www.docker.com/products/docker-desktop/
-
-> Includes both Docker Engine and Docker Compose.
-
-### 🔹 On Ubuntu / Linux
-
-Install Docker Engine:
-```bash
-sudo apt update
-sudo apt install docker.io
-sudo apt install docker-compose-v2
-```
-
-## 🎨 Frontend Template
-
-This project uses an HTML/CSS/JS template provided by [Colorlib](https://colorlib.com/).  
-The layout was adapted and integrated into Django templates.
