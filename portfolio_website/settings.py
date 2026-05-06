@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'contact.apps.ContactConfig',
     'projects.apps.ProjectsConfig',
+    'anymail',
     'storages',
     'django_hosts',
 ]
@@ -160,10 +161,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email settings
 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+DEFAULT_RECEIVER_EMAIL = env('DEFAULT_RECEIVER_EMAIL')
+TURNSTILE_SITE_KEY = env('TURNSTILE_SITE_KEY')
+TURNSTILE_SECRET_KEY = env('TURNSTILE_SECRET_KEY')
 
-EMAIL_HOST = env('EMAIL_HOST')
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = env('EMAIL_PORT')
-EMAIL_USE_TLS = env('EMAIL_USE_TLS')
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+ANYMAIL = {
+    'RESEND_API_KEY': env('RESEND_API_KEY'),
+}

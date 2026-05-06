@@ -4,20 +4,42 @@ from django.conf import settings
 
 class ContactForm(forms.Form):
     name = forms.CharField(
-        max_length=254,
+        min_length=2,
+        max_length=80,
         required=True,
+        error_messages={
+            'required': 'Name is required.',
+            'min_length': 'Name must be at least 2 characters.',
+            'max_length': 'Name must be at most 80 characters.',
+        },
     )
     email = forms.EmailField(
-        max_length=254,
         required=True,
+        error_messages={
+            'required': 'Email is required.',
+            'invalid': 'Enter a valid email address.',
+        },
     )
     subject = forms.CharField(
-        max_length=254,
+        min_length=3,
+        max_length=120,
         required=True,
+        error_messages={
+            'required': 'Subject is required.',
+            'min_length': 'Subject must be at least 3 characters.',
+            'max_length': 'Subject must be at most 120 characters.',
+        },
     )
     message = forms.CharField(
         widget=forms.Textarea,
+        min_length=10,
+        max_length=2000,
         required=True,
+        error_messages={
+            'required': 'Message is required.',
+            'min_length': 'Message must be at least 10 characters.',
+            'max_length': 'Message must be at most 2000 characters.',
+        },
     )
 
     def send_mail(self):
@@ -35,7 +57,7 @@ class ContactForm(forms.Form):
         email = EmailMessage(
             subject,
             message_context,
-            to=[settings.DEFAULT_FROM_EMAIL],
+            to=[settings.DEFAULT_RECEIVER_EMAIL],
             reply_to=[email],
         )
         email.send()

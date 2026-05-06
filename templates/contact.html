@@ -9,8 +9,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ gs|get_item:'contact_page_title' }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script type="module" crossorigin src="{% static 'js/main-CFswB-Bi.js' %}"></script>
   <link rel="stylesheet" crossorigin href="{% static 'css/main-Bymxzy8K.css' %}">
+  <style>
+    .contact-alert-success {
+      background: rgba(187, 247, 208, 0.88);
+      border-color: rgba(74, 222, 128, 0.42);
+      color: #064e3b;
+    }
+
+    .dark .contact-alert-success {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(134, 239, 172, 0.35);
+      color: #dcfce7;
+    }
+
+    .contact-alert-error {
+      background: rgba(254, 205, 211, 0.88);
+      border-color: rgba(251, 113, 133, 0.42);
+      color: #7f1d1d;
+    }
+
+    .dark .contact-alert-error {
+      background: rgba(244, 63, 94, 0.18);
+      border-color: rgba(253, 164, 175, 0.35);
+      color: #ffe4e6;
+    }
+  </style>
 </head>
 
 <body
@@ -34,12 +60,12 @@
       </p>
     </div>
     {% if contact_status == 'success' %}
-    <div class="mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-700 shadow-sm shadow-emerald-950/5 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200">
+    <div class="contact-alert-success mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-3 text-sm font-semibold shadow-sm shadow-emerald-950/5">
       <i class="fa-solid fa-circle-check text-base"></i>
       <span>{{ gs|get_item:'contact_success_message' }}</span>
     </div>
-    {% elif contact_status == 'error' %}
-    <div class="mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-700 shadow-sm shadow-rose-950/5 dark:border-rose-400/20 dark:bg-rose-400/10 dark:text-rose-200">
+    {% elif contact_status == 'error' and not contact_form.errors %}
+    <div class="contact-alert-error mb-10 inline-flex max-w-full items-center gap-3 rounded-xl border px-4 py-3 text-sm font-semibold shadow-sm shadow-rose-950/5">
       <i class="fa-solid fa-circle-exclamation text-base"></i>
       <span>{{ gs|get_item:'contact_error_message' }}</span>
     </div>
@@ -86,26 +112,39 @@
 
           <!-- Left inputs -->
           <div class="space-y-6">
-            <input type="text" name="name" placeholder="{{ gs|get_item:'contact_form_name_placeholder' }}"
-              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
-              required>
-            <input type="email" name="email" placeholder="{{ gs|get_item:'contact_form_email_placeholder' }}"
-              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
-              required>
-            <input type="text" name="subject" placeholder="{{ gs|get_item:'contact_form_subject_placeholder' }}"
-              class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
-              required>
+            <div>
+              <input type="text" name="name" placeholder="{{ gs|get_item:'contact_form_name_placeholder' }}"
+                value="{{ contact_form.name.value|default_if_none:'' }}"
+                class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+                minlength="2" maxlength="80" required>
+            </div>
+            <div>
+              <input type="email" name="email" placeholder="{{ gs|get_item:'contact_form_email_placeholder' }}"
+                value="{{ contact_form.email.value|default_if_none:'' }}"
+                class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+                required>
+            </div>
+            <div>
+              <input type="text" name="subject" placeholder="{{ gs|get_item:'contact_form_subject_placeholder' }}"
+                value="{{ contact_form.subject.value|default_if_none:'' }}"
+                class="w-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors text-apple-dark dark:text-white rounded-xl font-medium"
+                minlength="3" maxlength="120" required>
+            </div>
           </div>
 
           <!-- Right Textarea -->
           <div class="flex flex-col">
             <textarea name="message" placeholder="{{ gs|get_item:'contact_form_message_placeholder' }}"
               class="w-full h-full min-h-[180px] md:min-h-full bg-apple-bg dark:bg-white/5 border border-black/5 dark:border-white/10 px-5 py-3.5 placeholder-apple-gray/70 dark:placeholder-white/30 outline-none focus:ring-2 focus:ring-apple-dark dark:focus:ring-white transition-colors resize-none text-apple-dark dark:text-white rounded-xl font-medium"
-              required></textarea>
+              minlength="10" maxlength="2000" required>{{ contact_form.message.value|default_if_none:'' }}</textarea>
           </div>
 
           <!-- Submit Button (aligned right) -->
-          <div class="md:col-span-2 flex justify-end mt-2">
+          <div class="md:col-span-2 flex flex-col items-end gap-4 mt-2">
+            <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}"></div>
+            {% for error in contact_form.non_field_errors %}
+            <p class="text-sm font-semibold text-rose-600 dark:text-rose-300">{{ error }}</p>
+            {% endfor %}
             <button type="submit"
               class="px-8 py-3.5 bg-apple-dark dark:bg-white text-white dark:text-apple-dark font-bold rounded-xl hover:opacity-80 transition-opacity duration-300">
               Send Message
