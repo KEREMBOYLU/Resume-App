@@ -17,7 +17,7 @@ class ProjectPublicViewTests(TestCase):
             order=order,
         )
 
-    def test_project_list_hides_drafts(self):
+    def test_project_list_shows_drafts_with_status_badge(self):
         visible = self.create_project('Visible Project', 'visible-project')
         Project.objects.create(
             title='Draft Project',
@@ -30,14 +30,17 @@ class ProjectPublicViewTests(TestCase):
         response = self.client.get(reverse('projects'))
 
         self.assertContains(response, visible.title)
-        self.assertNotContains(response, 'Draft Project')
+        self.assertContains(response, 'Draft Project')
+        self.assertContains(response, 'Draft')
 
-    def test_project_detail_404s_for_draft_project(self):
+    def test_project_detail_renders_draft_project(self):
         draft = self.create_project('Draft Project', 'draft-project', status=Project.Status.DRAFT)
 
         response = self.client.get(reverse('project_detail', kwargs={'slug': draft.slug}))
 
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, draft.title)
+        self.assertContains(response, 'Draft')
 
     def test_project_detail_renders_active_sections_and_gallery_images(self):
         project = self.create_project('Visible Project', 'visible-project')

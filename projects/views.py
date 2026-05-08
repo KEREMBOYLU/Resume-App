@@ -7,7 +7,7 @@ from .models import Project, ProjectImage, ProjectSection
 
 
 def public_projects():
-    return Project.objects.exclude(status=Project.Status.DRAFT)
+    return Project.objects.all()
 
 
 def project_list(request):

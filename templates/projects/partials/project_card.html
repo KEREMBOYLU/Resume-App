@@ -6,11 +6,18 @@
     <div class="p-6 translate-z-10 flex-1 flex flex-col" style="font-style: normal;">
         <div class="flex justify-between items-start gap-3 mb-3">
             <h3 class="min-w-0 flex-1 text-xl font-bold text-apple-dark dark:text-white transition-colors leading-tight" style="font-style: normal;">{{ project.title }}</h3>
-            {% if project.category %}
-                <span class="max-w-[48%] shrink-0 px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider truncate" style="font-style: normal !important;">
-                    {{ project.category.name }}
-                </span>
-            {% endif %}
+            <div class="max-w-[52%] shrink-0 flex flex-wrap justify-end gap-2">
+                {% if project.status == 'draft' %}
+                    <span class="px-3 py-1 bg-amber-400/15 text-amber-700 dark:text-amber-300 rounded-full text-[10px] font-bold uppercase tracking-wider truncate" style="font-style: normal !important;">
+                        {{ project.get_status_display }}
+                    </span>
+                {% endif %}
+                {% if project.category %}
+                    <span class="px-3 py-1 bg-black/5 dark:bg-white/10 rounded-full text-[10px] font-bold text-apple-dark dark:text-white uppercase tracking-wider truncate" style="font-style: normal !important;">
+                        {{ project.category.name }}
+                    </span>
+                {% endif %}
+            </div>
         </div>
 
         <p class="text-[14px] text-apple-dark/70 dark:text-white/70 mb-6 transition-colors flex-1 leading-relaxed overflow-hidden" style="font-style: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
